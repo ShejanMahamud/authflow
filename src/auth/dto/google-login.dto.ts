@@ -1,5 +1,12 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsEmail, IsNotEmpty, IsString, IsUrl } from 'class-validator';
+import {
+  IsEmail,
+  IsNotEmpty,
+  IsString,
+  IsUrl,
+  Validate,
+} from 'class-validator';
+import { UrlSafety } from 'src/validators/urlSafety';
 
 export class GoogleLoginDto {
   @ApiProperty({
@@ -34,6 +41,10 @@ export class GoogleLoginDto {
   })
   @IsString()
   @IsNotEmpty({ message: 'Profile picture is required' })
-  @IsUrl({}, { message: 'Profile picture must be a valid URL' })
+  @IsUrl(
+    { protocols: ['https'] },
+    { message: 'Profile picture must be a valid URL' },
+  )
+  @Validate(UrlSafety)
   profilePicture: string;
 }

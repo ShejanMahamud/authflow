@@ -120,7 +120,7 @@ export class AuthService {
     const isExist = await this.isUserExists({ email: data.email });
 
     if (isExist) {
-      return new BadRequestException('User already exists');
+      throw new BadRequestException('User already exists');
     }
     //hash verify token
     const hashedToken = await Util.hash(verifyToken);
@@ -197,6 +197,20 @@ export class AuthService {
 
   //get access token after expire via refresh token
   async refreshToken(data: RefreshTokenDto) {
+    // 1. Verify JWT token first
+    try {
+      await this.jwt.verify(data.token, {
+        secret: this.refreshTokenSecret,
+      });
+    } catch (error) {
+      if (error instanceof Error) {
+        throw new UnauthorizedException('Something went wrong', {
+          description: error.message,
+        });
+      } else {
+        throw new BadRequestException('Bad Request');
+      }
+    }
     //find unique user
     const user = await this.prisma.user.findUnique({
       where: {
@@ -268,11 +282,12 @@ export class AuthService {
       );
     }
     const verifyToken = await Util.hash(Util.genToken());
+    const hashed = await Util.hash(verifyToken);
     const verifyTokenExp = new Date(Date.now() + 1000 * 60 * 15);
     //update the new token and send email
     await this.updateUser(
       {
-        verifyToken,
+        verifyToken: hashed,
         verifyTokenExp,
       },
       user.id,
@@ -323,21 +338,22 @@ export class AuthService {
         isDeleted: false,
       },
     });
+    const invalidCredsError = new BadRequestException(
+      'Invalid email or password',
+    );
     if (!user) {
-      throw new NotFoundException('User not found for this email!');
+      throw invalidCredsError;
     }
     //if login provider is email then check user has password or not
     if (user.provider === 'email') {
       if (!user.password) {
-        throw new BadRequestException(
-          'Password not set for this user. use social login',
-        );
+        throw invalidCredsError;
       }
       //check if password or not
       const isMatched = await this.isMatched(user.password, data.password);
 
       if (!isMatched) {
-        throw new BadRequestException('Credentials are not matched');
+        throw invalidCredsError;
       }
     }
     //save and get tokens

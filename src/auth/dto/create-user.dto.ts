@@ -20,7 +20,7 @@ export class RegisterUserDto {
   @IsString()
   @IsNotEmpty({ message: 'Username is required' })
   @MinLength(3, { message: 'Username must be at least 3 characters long' })
-  @Matches(/^[a-zA-Z0-9_]+$/, {
+  @Matches(/[A-Za-z\d@$!%*?&]+/, {
     message: 'Username can only contain letters, numbers, and underscores',
   })
   readonly username: string;
