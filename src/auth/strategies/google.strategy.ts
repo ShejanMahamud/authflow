@@ -29,12 +29,24 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
     //formatted user
     const user = {
       email: emails?.[0]?.value,
-      username:
-        name?.givenName?.toLowerCase() + '_' + name?.familyName?.toLowerCase(),
-      name: name?.givenName + ' ' + name?.familyName,
+      username: this.generateSafeUsername(name?.givenName, name?.familyName),
+      name: (name?.givenName || '') + ' ' + (name?.familyName || ''),
       profilePicture: photos?.[0]?.value,
     };
     //forward to callback
     done(null, user);
+  }
+
+  private generateSafeUsername(
+    givenName?: string,
+    familyName?: string,
+  ): string {
+    const firstName =
+      givenName?.toLowerCase().replace(/[^a-z0-9]/g, '') || 'user';
+    const lastName = familyName?.toLowerCase().replace(/[^a-z0-9]/g, '') || '';
+    const timestamp = Date.now().toString().slice(-4); // Last 4 digits of timestamp
+    return lastName
+      ? `${firstName}_${lastName}_${timestamp}`
+      : `${firstName}_${timestamp}`;
   }
 }

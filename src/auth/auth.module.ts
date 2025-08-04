@@ -9,6 +9,21 @@ import { GoogleStrategy } from './strategies/google.strategy';
 import { JwtAccessStrategy } from './strategies/jwt-access.strategy';
 import { JwtRefreshStrategy } from './strategies/jwt-refresh.strategy';
 
+/**
+ * Authentication Module
+ *
+ * Provides comprehensive authentication functionality including:
+ * - Email/password registration and login
+ * - Google OAuth integration
+ * - GitHub OAuth integration
+ * - JWT access and refresh token management
+ * - Email verification
+ * - Password reset functionality
+ * - Rate limiting and security features
+ *
+ * All endpoints are fully documented with Swagger/OpenAPI specifications
+ * including detailed request/response schemas, examples, and error codes.
+ */
 @Module({
   imports: [UploadModule, JwtModule.register({}), MailModule],
   providers: [

@@ -28,10 +28,23 @@ export class GithubStrategy extends PassportStrategy(Strategy, 'github') {
     const photo = photos?.[0]?.value;
     //return user
     return {
-      username,
+      username: this.generateSafeUsername(username, displayName),
       email,
       profilePicture: photo,
-      name: displayName,
+      name: displayName || username || 'Unknown User',
     };
+  }
+
+  private generateSafeUsername(
+    githubUsername?: string,
+    displayName?: string,
+  ): string {
+    // Prefer GitHub username if available, otherwise use display name
+    const baseUsername =
+      githubUsername ||
+      displayName?.toLowerCase().replace(/[^a-z0-9]/g, '') ||
+      'user';
+    const timestamp = Date.now().toString().slice(-4); // Last 4 digits of timestamp
+    return `${baseUsername}_${timestamp}`;
   }
 }

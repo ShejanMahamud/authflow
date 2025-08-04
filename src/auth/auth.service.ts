@@ -583,7 +583,7 @@ export class AuthService {
       throw new UnauthorizedException('Reset Token is not valid!');
     //check is token expired
     const isExpired = this.isExpired(user.resetTokenExp);
-    if (!isExpired) throw new ForbiddenException('Reset token is expired');
+    if (isExpired) throw new ForbiddenException('Reset token is expired');
 
     //hash the new password
     const hashed = await Util.hash(data.newPassword);
@@ -641,5 +641,6 @@ export class AuthService {
       },
       data.id,
     );
+    return { success: true, message: 'User logged out successfully!' };
   }
 }

@@ -1,19 +1,39 @@
-import { IsNotEmpty, IsString } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
+import { IsEmail, IsNotEmpty, IsString, IsUrl } from 'class-validator';
 
 export class GoogleLoginDto {
-  @IsString()
-  @IsNotEmpty()
+  @ApiProperty({
+    description: 'Email address from Google OAuth profile',
+    example: 'john.doe@gmail.com',
+    format: 'email',
+  })
+  @IsEmail({}, { message: 'Please provide a valid email address' })
+  @IsNotEmpty({ message: 'Email is required' })
   email: string;
 
+  @ApiProperty({
+    description: 'Full name from Google OAuth profile',
+    example: 'John Doe',
+  })
   @IsString()
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'Name is required' })
   name: string;
 
+  @ApiProperty({
+    description: 'Generated username from Google OAuth profile',
+    example: 'john_doe_1234',
+  })
   @IsString()
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'Username is required' })
   username: string;
 
+  @ApiProperty({
+    description: 'Profile picture URL from Google OAuth profile',
+    example: 'https://lh3.googleusercontent.com/a/default-user=s96-c',
+    format: 'url',
+  })
   @IsString()
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'Profile picture is required' })
+  @IsUrl({}, { message: 'Profile picture must be a valid URL' })
   profilePicture: string;
 }
