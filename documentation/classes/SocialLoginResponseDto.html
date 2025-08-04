@@ -95,7 +95,7 @@
 
 <ol class="breadcrumb">
   <li class="breadcrumb-item">Classes</li>
-  <li class="breadcrumb-item" >AccountVerifyDto</li>
+  <li class="breadcrumb-item" >SocialLoginResponseDto</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -119,7 +119,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/auth/dto/account-verify.dto.ts</code>
+            <code>src/auth/dto/auth-response.dto.ts</code>
         </p>
 
 
@@ -141,17 +141,16 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier"></span>
-                                    <span class="modifier"></span>
-                                    <span class="modifier"></span>
-                                    <span class="modifier">Readonly</span>
-                                <a href="#uid" >uid</a>
+                                    <span class="modifier">Optional</span>
+                                <a href="#data" >data</a>
                             </li>
                             <li>
                                     <span class="modifier"></span>
+                                <a href="#message" >message</a>
+                            </li>
+                            <li>
                                     <span class="modifier"></span>
-                                    <span class="modifier"></span>
-                                    <span class="modifier">Readonly</span>
-                                <a href="#verifyToken" >verifyToken</a>
+                                <a href="#success" >success</a>
                             </li>
                         </ul>
                     </td>
@@ -176,20 +175,18 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="uid"></a>
+                    <a name="data"></a>
                     <span class="name">
                             <span class="modifier"></span>
-                            <span class="modifier"></span>
-                            <span class="modifier"></span>
-                            <span class="modifier">Readonly</span>
-                        <span ><b>uid</b></span>
-                        <a href="#uid"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Optional</span>
+                        <span ><b>data</b></span>
+                        <a href="#data"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                        <i>Type : </i>        <code><a href="../classes/AuthTokensDto.html" target="_self" >AuthTokensDto</a></code>
 
                     </td>
                 </tr>
@@ -198,13 +195,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiProperty({description: &#x27;User ID from the verification email link&#x27;, example: &#x27;clm1234567890abcdef&#x27;, format: &#x27;uuid&#x27;})<br />@IsString()<br />@IsNotEmpty({message: &#x27;User ID is required&#x27;})<br />
+                            @ApiProperty({description: &#x27;Authentication tokens (only present on successful login)&#x27;, type: AuthTokensDto, required: false})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/auth/dto/account-verify.dto.ts:21</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/auth/dto/auth-response.dto.ts:72</a></div>
                         </td>
                     </tr>
 
@@ -215,14 +212,11 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="verifyToken"></a>
+                    <a name="message"></a>
                     <span class="name">
                             <span class="modifier"></span>
-                            <span class="modifier"></span>
-                            <span class="modifier"></span>
-                            <span class="modifier">Readonly</span>
-                        <span ><b>verifyToken</b></span>
-                        <a href="#verifyToken"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>message</b></span>
+                        <a href="#message"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -237,13 +231,49 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiProperty({description: &#x27;Email verification token from the verification email link&#x27;, example: &#x27;a1b2c3d4e5f6789012345678901234567890abcdef1234567890abcdef123456&#x27;, minLength: 32})<br />@IsString()<br />@IsNotEmpty({message: &#x27;Verification token is required&#x27;})<br />
+                            @ApiProperty({description: &#x27;Human-readable message about the social login result&#x27;, examples: undefined})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/auth/dto/account-verify.dto.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/auth/dto/auth-response.dto.ts:65</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="success"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>success</b></span>
+                        <a href="#success"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiProperty({description: &#x27;Indicates if the social login was successful&#x27;, example: true})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/auth/dto/auth-response.dto.ts:46</a></div>
                         </td>
                     </tr>
 
@@ -263,26 +293,136 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiProperty } from &#x27;@nestjs/swagger&#x27;;
-import { IsNotEmpty, IsString } from &#x27;class-validator&#x27;;
 
-export class AccountVerifyDto {
+export class AuthTokensDto {
   @ApiProperty({
-    description: &#x27;Email verification token from the verification email link&#x27;,
-    example: &#x27;a1b2c3d4e5f6789012345678901234567890abcdef1234567890abcdef123456&#x27;,
-    minLength: 32,
+    description: &#x27;JWT access token for API authentication&#x27;,
+    example:
+      &#x27;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&#x27;,
+    format: &#x27;jwt&#x27;,
   })
-  @IsString()
-  @IsNotEmpty({ message: &#x27;Verification token is required&#x27; })
-  readonly verifyToken: string;
+  accessToken: string;
 
   @ApiProperty({
-    description: &#x27;User ID from the verification email link&#x27;,
-    example: &#x27;clm1234567890abcdef&#x27;,
-    format: &#x27;uuid&#x27;,
+    description: &#x27;JWT refresh token for obtaining new access tokens&#x27;,
+    example:
+      &#x27;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.rTCH8Q2iys_2KqVrYhRGkq2KYdG2oUlmfHqR1UHwzUw&#x27;,
+    format: &#x27;jwt&#x27;,
   })
-  @IsString()
-  @IsNotEmpty({ message: &#x27;User ID is required&#x27; })
-  readonly uid: string;
+  refreshToken: string;
+}
+
+export class LoginResponseDto {
+  @ApiProperty({
+    description: &#x27;Indicates if the login was successful&#x27;,
+    example: true,
+  })
+  success: boolean;
+
+  @ApiProperty({
+    description: &#x27;Human-readable message about the login result&#x27;,
+    example: &#x27;Logged in successfully!&#x27;,
+  })
+  message: string;
+
+  @ApiProperty({
+    description: &#x27;Authentication tokens&#x27;,
+    type: AuthTokensDto,
+  })
+  data: AuthTokensDto;
+}
+
+export class SocialLoginResponseDto {
+  @ApiProperty({
+    description: &#x27;Indicates if the social login was successful&#x27;,
+    example: true,
+  })
+  success: boolean;
+
+  @ApiProperty({
+    description: &#x27;Human-readable message about the social login result&#x27;,
+    examples: {
+      success: {
+        value: &#x27;Google login successful&#x27;,
+        description: &#x27;Successful Google OAuth login&#x27;,
+      },
+      existing_user: {
+        value: &#x27;User already registered with email&#x27;,
+        description: &#x27;User exists with different provider&#x27;,
+      },
+      already_logged_in: {
+        value: &#x27;User already logged in via google&#x27;,
+        description: &#x27;User has active session&#x27;,
+      },
+    },
+  })
+  message: string;
+
+  @ApiProperty({
+    description: &#x27;Authentication tokens (only present on successful login)&#x27;,
+    type: AuthTokensDto,
+    required: false,
+  })
+  data?: AuthTokensDto;
+}
+
+export class RefreshTokenResponseDto {
+  @ApiProperty({
+    description: &#x27;Indicates if the token refresh was successful&#x27;,
+    example: true,
+  })
+  success: boolean;
+
+  @ApiProperty({
+    description: &#x27;Human-readable message about the refresh result&#x27;,
+    example: &#x27;New tokens revoked!&#x27;,
+  })
+  message: string;
+
+  @ApiProperty({
+    description: &#x27;New authentication tokens&#x27;,
+    type: AuthTokensDto,
+  })
+  data: AuthTokensDto;
+}
+
+export class GenericSuccessResponseDto {
+  @ApiProperty({
+    description: &#x27;Indicates if the operation was successful&#x27;,
+    example: true,
+  })
+  success: boolean;
+
+  @ApiProperty({
+    description: &#x27;Human-readable message about the operation result&#x27;,
+    examples: {
+      account_verified: {
+        value: &#x27;Account email verified&#x27;,
+        description: &#x27;Email verification successful&#x27;,
+      },
+      password_reset_sent: {
+        value: &#x27;Password reset email sent&#x27;,
+        description: &#x27;Password reset email sent successfully&#x27;,
+      },
+      password_changed: {
+        value: &#x27;Password changed successfully&#x27;,
+        description: &#x27;Password change successful&#x27;,
+      },
+      password_reset: {
+        value: &#x27;Password successfully reset&#x27;,
+        description: &#x27;Password reset successful&#x27;,
+      },
+      logout: {
+        value: &#x27;User logged out successfully!&#x27;,
+        description: &#x27;Logout successful&#x27;,
+      },
+      verification_sent: {
+        value: &#x27;Verification email sent!&#x27;,
+        description: &#x27;Verification email resent successfully&#x27;,
+      },
+    },
+  })
+  message: string;
 }
 </code></pre>
     </div>
@@ -322,7 +462,7 @@ export class AccountVerifyDto {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
-            var COMPODOC_CURRENT_PAGE_URL = 'AccountVerifyDto.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'SocialLoginResponseDto.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

@@ -142,9 +142,11 @@
                             <li>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                 <a href="#email" >email</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
                                 <a href="#name" >name</a>
@@ -152,9 +154,12 @@
                             <li>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                 <a href="#profilePicture" >profilePicture</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
                                 <a href="#username" >username</a>
@@ -186,6 +191,7 @@
                     <span class="name">
                             <span class="modifier"></span>
                             <span class="modifier"></span>
+                            <span class="modifier"></span>
                         <span ><b>email</b></span>
                         <a href="#email"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -202,13 +208,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @IsString()<br />@IsNotEmpty()<br />
+                            @ApiProperty({description: &#x27;Email address from Google OAuth profile&#x27;, example: &#x27;john.doe@gmail.com&#x27;, format: &#x27;email&#x27;})<br />@IsEmail({}, {message: &#x27;Please provide a valid email address&#x27;})<br />@IsNotEmpty({message: &#x27;Email is required&#x27;})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/auth/dto/google-login.dto.ts:6</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/auth/dto/google-login.dto.ts:12</a></div>
                         </td>
                     </tr>
 
@@ -221,6 +227,7 @@
                 <td class="col-md-4">
                     <a name="name"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                             <span class="modifier"></span>
                             <span class="modifier"></span>
                         <span ><b>name</b></span>
@@ -239,13 +246,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @IsString()<br />@IsNotEmpty()<br />
+                            @ApiProperty({description: &#x27;Full name from Google OAuth profile&#x27;, example: &#x27;John Doe&#x27;})<br />@IsString()<br />@IsNotEmpty({message: &#x27;Name is required&#x27;})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/auth/dto/google-login.dto.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/auth/dto/google-login.dto.ts:20</a></div>
                         </td>
                     </tr>
 
@@ -258,6 +265,8 @@
                 <td class="col-md-4">
                     <a name="profilePicture"></a>
                     <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier"></span>
                             <span class="modifier"></span>
                         <span ><b>profilePicture</b></span>
@@ -276,13 +285,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @IsString()<br />@IsNotEmpty()<br />
+                            @ApiProperty({description: &#x27;Profile picture URL from Google OAuth profile&#x27;, example: &#x27;https://lh3.googleusercontent.com/a/default-user&#x3D;s96-c&#x27;, format: &#x27;url&#x27;})<br />@IsString()<br />@IsNotEmpty({message: &#x27;Profile picture is required&#x27;})<br />@IsUrl({}, {message: &#x27;Profile picture must be a valid URL&#x27;})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/auth/dto/google-login.dto.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/auth/dto/google-login.dto.ts:38</a></div>
                         </td>
                     </tr>
 
@@ -295,6 +304,7 @@
                 <td class="col-md-4">
                     <a name="username"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                             <span class="modifier"></span>
                             <span class="modifier"></span>
                         <span ><b>username</b></span>
@@ -313,13 +323,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @IsString()<br />@IsNotEmpty()<br />
+                            @ApiProperty({description: &#x27;Generated username from Google OAuth profile&#x27;, example: &#x27;john_doe_1234&#x27;})<br />@IsString()<br />@IsNotEmpty({message: &#x27;Username is required&#x27;})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/auth/dto/google-login.dto.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/auth/dto/google-login.dto.ts:28</a></div>
                         </td>
                     </tr>
 
@@ -338,23 +348,43 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { IsNotEmpty, IsString } from &#x27;class-validator&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiProperty } from &#x27;@nestjs/swagger&#x27;;
+import { IsEmail, IsNotEmpty, IsString, IsUrl } from &#x27;class-validator&#x27;;
 
 export class GoogleLoginDto {
-  @IsString()
-  @IsNotEmpty()
+  @ApiProperty({
+    description: &#x27;Email address from Google OAuth profile&#x27;,
+    example: &#x27;john.doe@gmail.com&#x27;,
+    format: &#x27;email&#x27;,
+  })
+  @IsEmail({}, { message: &#x27;Please provide a valid email address&#x27; })
+  @IsNotEmpty({ message: &#x27;Email is required&#x27; })
   email: string;
 
+  @ApiProperty({
+    description: &#x27;Full name from Google OAuth profile&#x27;,
+    example: &#x27;John Doe&#x27;,
+  })
   @IsString()
-  @IsNotEmpty()
+  @IsNotEmpty({ message: &#x27;Name is required&#x27; })
   name: string;
 
+  @ApiProperty({
+    description: &#x27;Generated username from Google OAuth profile&#x27;,
+    example: &#x27;john_doe_1234&#x27;,
+  })
   @IsString()
-  @IsNotEmpty()
+  @IsNotEmpty({ message: &#x27;Username is required&#x27; })
   username: string;
 
+  @ApiProperty({
+    description: &#x27;Profile picture URL from Google OAuth profile&#x27;,
+    example: &#x27;https://lh3.googleusercontent.com/a/default-user&#x3D;s96-c&#x27;,
+    format: &#x27;url&#x27;,
+  })
   @IsString()
-  @IsNotEmpty()
+  @IsNotEmpty({ message: &#x27;Profile picture is required&#x27; })
+  @IsUrl({}, { message: &#x27;Profile picture must be a valid URL&#x27; })
   profilePicture: string;
 }
 </code></pre>

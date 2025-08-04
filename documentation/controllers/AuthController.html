@@ -151,11 +151,15 @@
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Public</span>
                                     <span class="modifier">Async</span>
                                 <a href="#changePassword" >changePassword</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
@@ -178,11 +182,14 @@
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Public</span>
                                     <span class="modifier">Async</span>
                                 <a href="#generateNewTokens" >generateNewTokens</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
@@ -200,6 +207,8 @@
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Public</span>
                                     <span class="modifier">Async</span>
                                 <a href="#githubAuthCallback" >githubAuthCallback</a>
@@ -210,11 +219,14 @@
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Public</span>
                                     <span class="modifier">Async</span>
                                 <a href="#googleAuth" >googleAuth</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
@@ -235,11 +247,15 @@
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Public</span>
                                     <span class="modifier">Async</span>
                                 <a href="#login" >login</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
@@ -264,11 +280,14 @@
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Public</span>
                                     <span class="modifier">Async</span>
                                 <a href="#register" >register</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
@@ -289,11 +308,16 @@
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Public</span>
                                     <span class="modifier">Async</span>
                                 <a href="#resetPassword" >resetPassword</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
@@ -338,6 +362,8 @@
                             <span class="modifier"></span>
                             <span class="modifier"></span>
                             <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier">Public</span>
                             <span class="modifier">Async</span>
                         <span ><b>changePassword</b></span>
@@ -356,14 +382,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post(&#x27;change-password&#x27;)<br />@HttpCode(HttpStatus.OK)<br />@UseGuards(undefined)<br />@Throttle({default: undefined})<br />@ApiBearerAuth()<br />@ApiOperation({summary: &#x27;Change user password&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Password changed successfully&#x27;})<br />@ApiResponse({status: 401, description: &#x27;Unauthorized - invalid token&#x27;})<br />@ApiResponse({status: 400, description: &#x27;Invalid current password or new password&#x27;})<br />@ApiResponse({status: 429, description: &#x27;Too many password change attempts&#x27;})<br /></code>
+                    <code>@Post(&#x27;change-password&#x27;)<br />@HttpCode(HttpStatus.OK)<br />@UseGuards(undefined)<br />@Throttle({default: undefined})<br />@ApiBearerAuth()<br />@ApiOperation({summary: &#x27;Change user password&#x27;, description: &#x27;Changes the password for an authenticated user. Requires current password verification.&#x27;})<br />@ApiBody({description: &#x27;Password change data&#x27;, type: ChangePasswordDto})<br />@ApiResponse({status: 200, description: &#x27;Password changed successfully&#x27;, type: GenericSuccessResponseDto})<br />@ApiResponse({status: 400, description: &#x27;Invalid current password, invalid new password format, or user has no password (social login)&#x27;, type: ErrorResponseDto})<br />@ApiResponse({status: 401, description: &#x27;Unauthorized - invalid or expired access token&#x27;, type: ErrorResponseDto})<br />@ApiResponse({status: 404, description: &#x27;User not found&#x27;, type: ErrorResponseDto})<br />@ApiResponse({status: 429, description: &#x27;Too many password change attempts&#x27;, type: ErrorResponseDto})<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="300"
-                                    class="link-to-prism">src/auth/auth.controller.ts:300</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="503"
+                                    class="link-to-prism">src/auth/auth.controller.ts:503</a></div>
                         </td>
                     </tr>
 
@@ -422,6 +448,8 @@
                             <span class="modifier"></span>
                             <span class="modifier"></span>
                             <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier">Public</span>
                             <span class="modifier">Async</span>
                         <span ><b>forgetPassword</b></span>
@@ -440,14 +468,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post(&#x27;forget-password&#x27;)<br />@HttpCode(HttpStatus.OK)<br />@Throttle({default: undefined})<br />@ApiOperation({summary: &#x27;Request password reset&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Password reset email sent&#x27;})<br />@ApiResponse({status: 400, description: &#x27;Invalid email address&#x27;})<br />@ApiResponse({status: 429, description: &#x27;Too many password reset attempts&#x27;})<br /></code>
+                    <code>@Post(&#x27;forget-password&#x27;)<br />@HttpCode(HttpStatus.OK)<br />@Throttle({default: undefined})<br />@ApiOperation({summary: &#x27;Request password reset&#x27;, description: &#x27;Sends a password reset email to the specified email address.&#x27;})<br />@ApiBody({description: &#x27;Email address for password reset&#x27;, type: ForgetPasswordDto})<br />@ApiResponse({status: 200, description: &#x27;Password reset email sent successfully&#x27;, type: GenericSuccessResponseDto})<br />@ApiResponse({status: 400, description: &#x27;Reset email already sent and still valid&#x27;, type: ErrorResponseDto})<br />@ApiResponse({status: 404, description: &#x27;User not found with this email address&#x27;, type: ErrorResponseDto})<br />@ApiResponse({status: 429, description: &#x27;Too many password reset attempts. Please wait before requesting again.&#x27;, type: ErrorResponseDto})<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="251"
-                                    class="link-to-prism">src/auth/auth.controller.ts:251</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="415"
+                                    class="link-to-prism">src/auth/auth.controller.ts:415</a></div>
                         </td>
                     </tr>
 
@@ -521,6 +549,8 @@
                             <span class="modifier"></span>
                             <span class="modifier"></span>
                             <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier">Public</span>
                             <span class="modifier">Async</span>
                         <span ><b>generateNewTokens</b></span>
@@ -539,14 +569,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post(&#x27;refresh&#x27;)<br />@HttpCode(HttpStatus.OK)<br />@UseGuards(undefined)<br />@UsePipes(new ValidationPipe())<br />@Throttle({default: undefined})<br />@ApiBearerAuth()<br />@ApiOperation({summary: &#x27;Refresh access token&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Tokens refreshed successfully&#x27;})<br />@ApiResponse({status: 401, description: &#x27;Invalid refresh token&#x27;})<br />@ApiResponse({status: 429, description: &#x27;Too many refresh attempts&#x27;})<br /></code>
+                    <code>@Post(&#x27;refresh&#x27;)<br />@HttpCode(HttpStatus.OK)<br />@UseGuards(undefined)<br />@Throttle({default: undefined})<br />@ApiBearerAuth()<br />@ApiOperation({summary: &#x27;Refresh access token&#x27;, description: &#x27;Uses a valid refresh token to generate new access and refresh tokens.&#x27;})<br />@ApiBody({description: &#x27;Refresh token data&#x27;, type: RefreshTokenDto})<br />@ApiResponse({status: 200, description: &#x27;Tokens refreshed successfully&#x27;, type: RefreshTokenResponseDto})<br />@ApiResponse({status: 400, description: &#x27;Invalid or expired refresh token&#x27;, type: ErrorResponseDto})<br />@ApiResponse({status: 401, description: &#x27;Unauthorized - invalid JWT signature&#x27;, type: ErrorResponseDto})<br />@ApiResponse({status: 404, description: &#x27;User or refresh token not found&#x27;, type: ErrorResponseDto})<br />@ApiResponse({status: 429, description: &#x27;Too many refresh attempts&#x27;, type: ErrorResponseDto})<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="187"
-                                    class="link-to-prism">src/auth/auth.controller.ts:187</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="302"
+                                    class="link-to-prism">src/auth/auth.controller.ts:302</a></div>
                         </td>
                     </tr>
 
@@ -603,6 +633,7 @@
                             <span class="modifier"></span>
                             <span class="modifier"></span>
                             <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier">Public</span>
                             <span class="modifier">Async</span>
                         <span ><b>githubAuth</b></span>
@@ -621,14 +652,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;github&#x27;)<br />@UseGuards(undefined)<br />@Throttle({default: undefined})<br />@ApiOperation({summary: &#x27;Initiate GitHub OAuth login&#x27;})<br />@ApiResponse({status: 302, description: &#x27;Redirect to GitHub OAuth&#x27;})<br /></code>
+                    <code>@Get(&#x27;github&#x27;)<br />@UseGuards(undefined)<br />@Throttle({default: undefined})<br />@ApiOperation({summary: &#x27;Initiate GitHub OAuth login&#x27;, description: &#x27;Redirects to GitHub OAuth consent screen for authentication.&#x27;})<br />@ApiResponse({status: 302, description: &#x27;Redirect to GitHub OAuth consent screen&#x27;})<br />@ApiResponse({status: 429, description: &#x27;Too many OAuth attempts&#x27;, type: ErrorResponseDto})<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="147"
-                                    class="link-to-prism">src/auth/auth.controller.ts:147</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="225"
+                                    class="link-to-prism">src/auth/auth.controller.ts:225</a></div>
                         </td>
                     </tr>
 
@@ -657,6 +688,8 @@
                             <span class="modifier"></span>
                             <span class="modifier"></span>
                             <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier">Public</span>
                             <span class="modifier">Async</span>
                         <span ><b>githubAuthCallback</b></span>
@@ -675,14 +708,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;github/callback&#x27;)<br />@UseGuards(undefined)<br />@HttpCode(HttpStatus.OK)<br />@Throttle({default: undefined})<br />@ApiOperation({summary: &#x27;GitHub OAuth callback&#x27;})<br />@ApiResponse({status: 200, description: &#x27;GitHub login successful&#x27;})<br />@ApiResponse({status: 401, description: &#x27;GitHub authentication failed&#x27;})<br /></code>
+                    <code>@Get(&#x27;github/callback&#x27;)<br />@UseGuards(undefined)<br />@HttpCode(HttpStatus.OK)<br />@Throttle({default: undefined})<br />@ApiOperation({summary: &#x27;GitHub OAuth callback handler&#x27;, description: &#x27;Handles the callback from GitHub OAuth and creates/logs in the user.&#x27;})<br />@ApiResponse({status: 200, description: &#x27;GitHub authentication successful&#x27;, type: SocialLoginResponseDto})<br />@ApiResponse({status: 400, description: &#x27;User already registered with different provider or already logged in&#x27;, type: SocialLoginResponseDto})<br />@ApiResponse({status: 401, description: &#x27;GitHub authentication failed&#x27;, type: ErrorResponseDto})<br />@ApiResponse({status: 429, description: &#x27;Too many OAuth attempts&#x27;, type: ErrorResponseDto})<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="164"
-                                    class="link-to-prism">src/auth/auth.controller.ts:164</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="259"
+                                    class="link-to-prism">src/auth/auth.controller.ts:259</a></div>
                         </td>
                     </tr>
 
@@ -739,6 +772,7 @@
                             <span class="modifier"></span>
                             <span class="modifier"></span>
                             <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier">Public</span>
                             <span class="modifier">Async</span>
                         <span ><b>googleAuth</b></span>
@@ -757,14 +791,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;google&#x27;)<br />@UseGuards(undefined)<br />@Throttle({default: undefined})<br />@ApiOperation({summary: &#x27;Initiate Google OAuth login&#x27;})<br />@ApiResponse({status: 302, description: &#x27;Redirect to Google OAuth&#x27;})<br /></code>
+                    <code>@Get(&#x27;google&#x27;)<br />@UseGuards(undefined)<br />@Throttle({default: undefined})<br />@ApiOperation({summary: &#x27;Initiate Google OAuth login&#x27;, description: &#x27;Redirects to Google OAuth consent screen for authentication.&#x27;})<br />@ApiResponse({status: 302, description: &#x27;Redirect to Google OAuth consent screen&#x27;})<br />@ApiResponse({status: 429, description: &#x27;Too many OAuth attempts&#x27;, type: ErrorResponseDto})<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="118"
-                                    class="link-to-prism">src/auth/auth.controller.ts:118</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="171"
+                                    class="link-to-prism">src/auth/auth.controller.ts:171</a></div>
                         </td>
                     </tr>
 
@@ -793,6 +827,8 @@
                             <span class="modifier"></span>
                             <span class="modifier"></span>
                             <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier">Public</span>
                             <span class="modifier">Async</span>
                         <span ><b>googleAuthCallback</b></span>
@@ -811,14 +847,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;google/callback&#x27;)<br />@UseGuards(undefined)<br />@HttpCode(HttpStatus.OK)<br />@Throttle({default: undefined})<br />@ApiOperation({summary: &#x27;Google OAuth callback&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Google login successful&#x27;})<br />@ApiResponse({status: 401, description: &#x27;Google authentication failed&#x27;})<br /></code>
+                    <code>@Get(&#x27;google/callback&#x27;)<br />@UseGuards(undefined)<br />@HttpCode(HttpStatus.OK)<br />@Throttle({default: undefined})<br />@ApiOperation({summary: &#x27;Google OAuth callback handler&#x27;, description: &#x27;Handles the callback from Google OAuth and creates/logs in the user.&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Google authentication successful&#x27;, type: SocialLoginResponseDto})<br />@ApiResponse({status: 400, description: &#x27;User already registered with different provider or already logged in&#x27;, type: SocialLoginResponseDto})<br />@ApiResponse({status: 401, description: &#x27;Google authentication failed&#x27;, type: ErrorResponseDto})<br />@ApiResponse({status: 429, description: &#x27;Too many OAuth attempts&#x27;, type: ErrorResponseDto})<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="135"
-                                    class="link-to-prism">src/auth/auth.controller.ts:135</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="205"
+                                    class="link-to-prism">src/auth/auth.controller.ts:205</a></div>
                         </td>
                     </tr>
 
@@ -878,6 +914,7 @@
                             <span class="modifier"></span>
                             <span class="modifier"></span>
                             <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier">Public</span>
                             <span class="modifier">Async</span>
                         <span ><b>login</b></span>
@@ -896,14 +933,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post(&#x27;login&#x27;)<br />@HttpCode(HttpStatus.OK)<br />@UsePipes(new ValidationPipe())<br />@Throttle({default: undefined})<br />@ApiOperation({summary: &#x27;User login&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Login successful&#x27;})<br />@ApiResponse({status: 401, description: &#x27;Invalid credentials&#x27;})<br />@ApiResponse({status: 429, description: &#x27;Too many login attempts&#x27;})<br /></code>
+                    <code>@Post(&#x27;login&#x27;)<br />@HttpCode(HttpStatus.OK)<br />@Throttle({default: undefined})<br />@ApiOperation({summary: &#x27;User login with email and password&#x27;, description: &#x27;Authenticates a user with email and password. Returns JWT tokens on success.&#x27;})<br />@ApiBody({description: &#x27;User login credentials&#x27;, type: LoginDto})<br />@ApiResponse({status: 200, description: &#x27;Login successful. Returns access and refresh tokens.&#x27;, type: LoginResponseDto})<br />@ApiResponse({status: 400, description: &#x27;Invalid credentials or password not set for social login user&#x27;, type: ErrorResponseDto})<br />@ApiResponse({status: 404, description: &#x27;User not found or email not verified&#x27;, type: ErrorResponseDto})<br />@ApiResponse({status: 429, description: &#x27;Too many login attempts. Please try again later.&#x27;, type: ErrorResponseDto})<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="106"
-                                    class="link-to-prism">src/auth/auth.controller.ts:106</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="151"
+                                    class="link-to-prism">src/auth/auth.controller.ts:151</a></div>
                         </td>
                     </tr>
 
@@ -963,6 +1000,9 @@
                             <span class="modifier"></span>
                             <span class="modifier"></span>
                             <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier">Public</span>
                             <span class="modifier">Async</span>
                         <span ><b>logOut</b></span>
@@ -981,14 +1021,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post(&#x27;logout&#x27;)<br />@HttpCode(HttpStatus.OK)<br />@UseGuards(undefined)<br />@Throttle({default: undefined})<br />@ApiBearerAuth()<br />@ApiOperation({summary: &#x27;User logout&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Logout successful&#x27;})<br />@ApiResponse({status: 401, description: &#x27;Unauthorized - invalid token&#x27;})<br /></code>
+                    <code>@Post(&#x27;logout&#x27;)<br />@HttpCode(HttpStatus.OK)<br />@UseGuards(undefined)<br />@Throttle({default: undefined})<br />@ApiBearerAuth()<br />@ApiOperation({summary: &#x27;User logout&#x27;, description: &#x27;Logs out the user by invalidating all tokens and clearing session data.&#x27;})<br />@ApiBody({description: &#x27;Logout data&#x27;, type: LogoutDto})<br />@ApiResponse({status: 200, description: &#x27;Logout successful&#x27;, type: GenericSuccessResponseDto})<br />@ApiResponse({status: 401, description: &#x27;Unauthorized - invalid or expired access token&#x27;, type: ErrorResponseDto})<br />@ApiResponse({status: 404, description: &#x27;User not found&#x27;, type: ErrorResponseDto})<br />@ApiResponse({status: 429, description: &#x27;Too many logout attempts&#x27;, type: ErrorResponseDto})<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="318"
-                                    class="link-to-prism">src/auth/auth.controller.ts:318</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="541"
+                                    class="link-to-prism">src/auth/auth.controller.ts:541</a></div>
                         </td>
                     </tr>
 
@@ -1051,6 +1091,8 @@
                             <span class="modifier"></span>
                             <span class="modifier"></span>
                             <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier">Public</span>
                             <span class="modifier">Async</span>
                         <span ><b>register</b></span>
@@ -1069,14 +1111,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post(&#x27;register&#x27;)<br />@HttpCode(HttpStatus.CREATED)<br />@UseInterceptors(undefined)<br />@UsePipes(new ValidationPipe())<br />@Throttle({default: undefined})<br />@ApiOperation({summary: &#x27;Register a new user&#x27;})<br />@ApiConsumes(&#x27;multipart/form-data&#x27;)<br />@ApiResponse({status: 201, description: &#x27;User successfully registered&#x27;})<br />@ApiResponse({status: 400, description: &#x27;Invalid input data&#x27;})<br />@ApiResponse({status: 409, description: &#x27;User already exists&#x27;})<br />@ApiResponse({status: 429, description: &#x27;Too many registration attempts&#x27;})<br /></code>
+                    <code>@Post(&#x27;register&#x27;)<br />@HttpCode(HttpStatus.CREATED)<br />@UseInterceptors(undefined)<br />@Throttle({default: undefined})<br />@ApiOperation({summary: &#x27;Register a new user account&#x27;, description: &#x27;Creates a new user account with email verification. Optionally accepts a profile picture upload.&#x27;})<br />@ApiConsumes(&#x27;multipart/form-data&#x27;)<br />@ApiBody({description: &#x27;User registration data with optional profile picture&#x27;, type: RegisterUserDto})<br />@ApiResponse({status: 201, description: &#x27;User successfully registered. Verification email sent.&#x27;, type: RegisterResponseDto})<br />@ApiResponse({status: 400, description: &#x27;Invalid input data or user already exists&#x27;, type: ErrorResponseDto})<br />@ApiResponse({status: 409, description: &#x27;User with this email already exists&#x27;, type: ErrorResponseDto})<br />@ApiResponse({status: 413, description: &#x27;Profile picture too large (max 2MB)&#x27;, type: ErrorResponseDto})<br />@ApiResponse({status: 415, description: &#x27;Invalid profile picture format (only jpg, jpeg, png, gif allowed)&#x27;, type: ErrorResponseDto})<br />@ApiResponse({status: 429, description: &#x27;Too many registration attempts. Please try again later.&#x27;, type: ErrorResponseDto})<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="72"
-                                    class="link-to-prism">src/auth/auth.controller.ts:72</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="101"
+                                    class="link-to-prism">src/auth/auth.controller.ts:101</a></div>
                         </td>
                     </tr>
 
@@ -1160,6 +1202,7 @@
                             <span class="modifier"></span>
                             <span class="modifier"></span>
                             <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier">Public</span>
                             <span class="modifier">Async</span>
                         <span ><b>resendAccountVerify</b></span>
@@ -1178,14 +1221,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post(&#x27;resend-verify/:email&#x27;)<br />@HttpCode(HttpStatus.OK)<br />@Throttle({default: undefined})<br />@ApiOperation({summary: &#x27;Resend account verification email&#x27;})<br />@ApiParam({name: &#x27;email&#x27;, description: &#x27;User email address&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Verification email sent&#x27;})<br />@ApiResponse({status: 400, description: &#x27;Invalid email address&#x27;})<br />@ApiResponse({status: 429, description: &#x27;Too many resend attempts&#x27;})<br /></code>
+                    <code>@Post(&#x27;resend-verify/:email&#x27;)<br />@HttpCode(HttpStatus.OK)<br />@Throttle({default: undefined})<br />@ApiOperation({summary: &#x27;Resend email verification&#x27;, description: &#x27;Resends the email verification link to the specified email address.&#x27;})<br />@ApiParam({name: &#x27;email&#x27;, description: &#x27;Email address to resend verification to&#x27;, example: &#x27;john.doe@example.com&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Verification email sent successfully&#x27;, type: GenericSuccessResponseDto})<br />@ApiResponse({status: 400, description: &#x27;Invalid email or verification token still valid&#x27;, type: ErrorResponseDto})<br />@ApiResponse({status: 404, description: &#x27;User not found or already verified&#x27;, type: ErrorResponseDto})<br />@ApiResponse({status: 429, description: &#x27;Too many resend attempts. Please wait before requesting again.&#x27;, type: ErrorResponseDto})<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="228"
-                                    class="link-to-prism">src/auth/auth.controller.ts:228</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="376"
+                                    class="link-to-prism">src/auth/auth.controller.ts:376</a></div>
                         </td>
                     </tr>
 
@@ -1256,6 +1299,9 @@
                             <span class="modifier"></span>
                             <span class="modifier"></span>
                             <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier">Public</span>
                             <span class="modifier">Async</span>
                         <span ><b>resetPassword</b></span>
@@ -1274,14 +1320,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post(&#x27;reset-password&#x27;)<br />@HttpCode(HttpStatus.OK)<br />@Throttle({default: undefined})<br />@ApiOperation({summary: &#x27;Reset password with token&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Password reset successfully&#x27;})<br />@ApiResponse({status: 400, description: &#x27;Invalid reset token or password&#x27;})<br />@ApiResponse({status: 429, description: &#x27;Too many reset attempts&#x27;})<br /></code>
+                    <code>@Post(&#x27;reset-password&#x27;)<br />@HttpCode(HttpStatus.OK)<br />@Throttle({default: undefined})<br />@ApiOperation({summary: &#x27;Reset password with token&#x27;, description: &#x27;Resets user password using the token received in the password reset email.&#x27;})<br />@ApiBody({description: &#x27;Password reset data&#x27;, type: ResetPasswordDto})<br />@ApiResponse({status: 200, description: &#x27;Password reset successfully&#x27;, type: GenericSuccessResponseDto})<br />@ApiResponse({status: 400, description: &#x27;Invalid password format&#x27;, type: ErrorResponseDto})<br />@ApiResponse({status: 401, description: &#x27;Invalid reset token&#x27;, type: ErrorResponseDto})<br />@ApiResponse({status: 403, description: &#x27;Reset token expired&#x27;, type: ErrorResponseDto})<br />@ApiResponse({status: 429, description: &#x27;Too many reset attempts&#x27;, type: ErrorResponseDto})<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="274"
-                                    class="link-to-prism">src/auth/auth.controller.ts:274</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="459"
+                                    class="link-to-prism">src/auth/auth.controller.ts:459</a></div>
                         </td>
                     </tr>
 
@@ -1340,6 +1386,8 @@
                             <span class="modifier"></span>
                             <span class="modifier"></span>
                             <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier">Public</span>
                             <span class="modifier">Async</span>
                         <span ><b>validateAccount</b></span>
@@ -1358,14 +1406,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post(&#x27;validate-account&#x27;)<br />@HttpCode(HttpStatus.OK)<br />@Throttle({default: undefined})<br />@ApiOperation({summary: &#x27;Validate account verification&#x27;})<br />@ApiResponse({status: 200, description: &#x27;Account verified successfully&#x27;})<br />@ApiResponse({status: 400, description: &#x27;Invalid verification token&#x27;})<br />@ApiResponse({status: 429, description: &#x27;Too many verification attempts&#x27;})<br /></code>
+                    <code>@Post(&#x27;validate-account&#x27;)<br />@HttpCode(HttpStatus.OK)<br />@Throttle({default: undefined})<br />@ApiOperation({summary: &#x27;Verify email address&#x27;, description: &#x27;Validates the email verification token sent to user&#x27;s email address.&#x27;})<br />@ApiBody({description: &#x27;Email verification data&#x27;, type: AccountVerifyDto})<br />@ApiResponse({status: 200, description: &#x27;Email verified successfully&#x27;, type: GenericSuccessResponseDto})<br />@ApiResponse({status: 400, description: &#x27;Invalid verification token or token expired&#x27;, type: ErrorResponseDto})<br />@ApiResponse({status: 404, description: &#x27;User not found or already verified&#x27;, type: ErrorResponseDto})<br />@ApiResponse({status: 429, description: &#x27;Too many verification attempts&#x27;, type: ErrorResponseDto})<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="207"
-                                    class="link-to-prism">src/auth/auth.controller.ts:207</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="338"
+                                    class="link-to-prism">src/auth/auth.controller.ts:338</a></div>
                         </td>
                     </tr>
 
@@ -1430,14 +1478,13 @@
   UploadedFile,
   UseGuards,
   UseInterceptors,
-  UsePipes,
-  ValidationPipe,
 } from &#x27;@nestjs/common&#x27;;
 import { AuthGuard } from &#x27;@nestjs/passport&#x27;;
 import { FileInterceptor } from &#x27;@nestjs/platform-express&#x27;;
 
 import {
   ApiBearerAuth,
+  ApiBody,
   ApiConsumes,
   ApiOperation,
   ApiParam,
@@ -1448,6 +1495,13 @@ import { Throttle } from &#x27;@nestjs/throttler&#x27;;
 import { Request } from &#x27;express&#x27;;
 import { AuthService } from &#x27;./auth.service&#x27;;
 import { AccountVerifyDto } from &#x27;./dto/account-verify.dto&#x27;;
+import { ErrorResponseDto } from &#x27;./dto/auth-error.dto&#x27;;
+import {
+  GenericSuccessResponseDto,
+  LoginResponseDto,
+  RefreshTokenResponseDto,
+  SocialLoginResponseDto,
+} from &#x27;./dto/auth-response.dto&#x27;;
 import { ChangePasswordDto } from &#x27;./dto/change-password.dto&#x27;;
 import { RegisterUserDto } from &#x27;./dto/create-user.dto&#x27;;
 import { ForgetPasswordDto } from &#x27;./dto/forget-password.dto&#x27;;
@@ -1456,6 +1510,7 @@ import { GoogleLoginDto } from &#x27;./dto/google-login.dto&#x27;;
 import { LoginDto } from &#x27;./dto/login-user.dto&#x27;;
 import { LogoutDto } from &#x27;./dto/logout.dto&#x27;;
 import { RefreshTokenDto } from &#x27;./dto/refresh-token.dto&#x27;;
+import { RegisterResponseDto } from &#x27;./dto/register-response.dto&#x27;;
 import { ResetPasswordDto } from &#x27;./dto/reset-password.dto&#x27;;
 
 @ApiTags(&#x27;Authentication&#x27;)
@@ -1466,25 +1521,47 @@ export class AuthController {
   @Post(&#x27;register&#x27;)
   @HttpCode(HttpStatus.CREATED)
   @UseInterceptors(FileInterceptor(&#x27;profilePicture&#x27;))
-  @UsePipes(new ValidationPipe({ transform: true, whitelist: true }))
   @Throttle({ default: { limit: 5, ttl: 60000 } }) // 5 requests per minute
-  @ApiOperation({ summary: &#x27;Register a new user&#x27; })
+  @ApiOperation({
+    summary: &#x27;Register a new user account&#x27;,
+    description:
+      &#x27;Creates a new user account with email verification. Optionally accepts a profile picture upload.&#x27;,
+  })
   @ApiConsumes(&#x27;multipart/form-data&#x27;)
+  @ApiBody({
+    description: &#x27;User registration data with optional profile picture&#x27;,
+    type: RegisterUserDto,
+  })
   @ApiResponse({
     status: 201,
-    description: &#x27;User successfully registered&#x27;,
+    description: &#x27;User successfully registered. Verification email sent.&#x27;,
+    type: RegisterResponseDto,
   })
   @ApiResponse({
     status: 400,
-    description: &#x27;Invalid input data&#x27;,
+    description: &#x27;Invalid input data or user already exists&#x27;,
+    type: ErrorResponseDto,
   })
   @ApiResponse({
     status: 409,
-    description: &#x27;User already exists&#x27;,
+    description: &#x27;User with this email already exists&#x27;,
+    type: ErrorResponseDto,
+  })
+  @ApiResponse({
+    status: 413,
+    description: &#x27;Profile picture too large (max 2MB)&#x27;,
+    type: ErrorResponseDto,
+  })
+  @ApiResponse({
+    status: 415,
+    description:
+      &#x27;Invalid profile picture format (only jpg, jpeg, png, gif allowed)&#x27;,
+    type: ErrorResponseDto,
   })
   @ApiResponse({
     status: 429,
-    description: &#x27;Too many registration attempts&#x27;,
+    description: &#x27;Too many registration attempts. Please try again later.&#x27;,
+    type: ErrorResponseDto,
   })
   public async register(
     @Body() data: RegisterUserDto,
@@ -1505,20 +1582,36 @@ export class AuthController {
 
   @Post(&#x27;login&#x27;)
   @HttpCode(HttpStatus.OK)
-  @UsePipes(new ValidationPipe({ transform: true, whitelist: true }))
   @Throttle({ default: { limit: 10, ttl: 60000 } }) // 10 requests per minute
-  @ApiOperation({ summary: &#x27;User login&#x27; })
-  @ApiResponse({
-    status: 200,
-    description: &#x27;Login successful&#x27;,
+  @ApiOperation({
+    summary: &#x27;User login with email and password&#x27;,
+    description:
+      &#x27;Authenticates a user with email and password. Returns JWT tokens on success.&#x27;,
+  })
+  @ApiBody({
+    description: &#x27;User login credentials&#x27;,
+    type: LoginDto,
   })
   @ApiResponse({
-    status: 401,
-    description: &#x27;Invalid credentials&#x27;,
+    status: 200,
+    description: &#x27;Login successful. Returns access and refresh tokens.&#x27;,
+    type: LoginResponseDto,
+  })
+  @ApiResponse({
+    status: 400,
+    description:
+      &#x27;Invalid credentials or password not set for social login user&#x27;,
+    type: ErrorResponseDto,
+  })
+  @ApiResponse({
+    status: 404,
+    description: &#x27;User not found or email not verified&#x27;,
+    type: ErrorResponseDto,
   })
   @ApiResponse({
     status: 429,
-    description: &#x27;Too many login attempts&#x27;,
+    description: &#x27;Too many login attempts. Please try again later.&#x27;,
+    type: ErrorResponseDto,
   })
   public async login(@Body() data: LoginDto) {
     return this.authService.loginUser(data);
@@ -1527,10 +1620,18 @@ export class AuthController {
   @Get(&#x27;google&#x27;)
   @UseGuards(AuthGuard(&#x27;google&#x27;))
   @Throttle({ default: { limit: 20, ttl: 60000 } })
-  @ApiOperation({ summary: &#x27;Initiate Google OAuth login&#x27; })
+  @ApiOperation({
+    summary: &#x27;Initiate Google OAuth login&#x27;,
+    description: &#x27;Redirects to Google OAuth consent screen for authentication.&#x27;,
+  })
   @ApiResponse({
     status: 302,
-    description: &#x27;Redirect to Google OAuth&#x27;,
+    description: &#x27;Redirect to Google OAuth consent screen&#x27;,
+  })
+  @ApiResponse({
+    status: 429,
+    description: &#x27;Too many OAuth attempts&#x27;,
+    type: ErrorResponseDto,
   })
   public async googleAuth() {
     // This method initiates Google OAuth flow
@@ -1540,14 +1641,31 @@ export class AuthController {
   @UseGuards(AuthGuard(&#x27;google&#x27;))
   @HttpCode(HttpStatus.OK)
   @Throttle({ default: { limit: 20, ttl: 60000 } })
-  @ApiOperation({ summary: &#x27;Google OAuth callback&#x27; })
+  @ApiOperation({
+    summary: &#x27;Google OAuth callback handler&#x27;,
+    description:
+      &#x27;Handles the callback from Google OAuth and creates/logs in the user.&#x27;,
+  })
   @ApiResponse({
     status: 200,
-    description: &#x27;Google login successful&#x27;,
+    description: &#x27;Google authentication successful&#x27;,
+    type: SocialLoginResponseDto,
+  })
+  @ApiResponse({
+    status: 400,
+    description:
+      &#x27;User already registered with different provider or already logged in&#x27;,
+    type: SocialLoginResponseDto,
   })
   @ApiResponse({
     status: 401,
     description: &#x27;Google authentication failed&#x27;,
+    type: ErrorResponseDto,
+  })
+  @ApiResponse({
+    status: 429,
+    description: &#x27;Too many OAuth attempts&#x27;,
+    type: ErrorResponseDto,
   })
   public async googleAuthCallback(@Req() req: Request) {
     return this.authService.googleLogin(req.user as GoogleLoginDto);
@@ -1556,10 +1674,18 @@ export class AuthController {
   @Get(&#x27;github&#x27;)
   @UseGuards(AuthGuard(&#x27;github&#x27;))
   @Throttle({ default: { limit: 20, ttl: 60000 } })
-  @ApiOperation({ summary: &#x27;Initiate GitHub OAuth login&#x27; })
+  @ApiOperation({
+    summary: &#x27;Initiate GitHub OAuth login&#x27;,
+    description: &#x27;Redirects to GitHub OAuth consent screen for authentication.&#x27;,
+  })
   @ApiResponse({
     status: 302,
-    description: &#x27;Redirect to GitHub OAuth&#x27;,
+    description: &#x27;Redirect to GitHub OAuth consent screen&#x27;,
+  })
+  @ApiResponse({
+    status: 429,
+    description: &#x27;Too many OAuth attempts&#x27;,
+    type: ErrorResponseDto,
   })
   public async githubAuth() {
     // This method initiates GitHub OAuth flow
@@ -1569,14 +1695,31 @@ export class AuthController {
   @UseGuards(AuthGuard(&#x27;github&#x27;))
   @HttpCode(HttpStatus.OK)
   @Throttle({ default: { limit: 20, ttl: 60000 } })
-  @ApiOperation({ summary: &#x27;GitHub OAuth callback&#x27; })
+  @ApiOperation({
+    summary: &#x27;GitHub OAuth callback handler&#x27;,
+    description:
+      &#x27;Handles the callback from GitHub OAuth and creates/logs in the user.&#x27;,
+  })
   @ApiResponse({
     status: 200,
-    description: &#x27;GitHub login successful&#x27;,
+    description: &#x27;GitHub authentication successful&#x27;,
+    type: SocialLoginResponseDto,
+  })
+  @ApiResponse({
+    status: 400,
+    description:
+      &#x27;User already registered with different provider or already logged in&#x27;,
+    type: SocialLoginResponseDto,
   })
   @ApiResponse({
     status: 401,
     description: &#x27;GitHub authentication failed&#x27;,
+    type: ErrorResponseDto,
+  })
+  @ApiResponse({
+    status: 429,
+    description: &#x27;Too many OAuth attempts&#x27;,
+    type: ErrorResponseDto,
   })
   public async githubAuthCallback(@Req() req: Request) {
     return this.authService.githubLogin(req.user as GithubLoginDto);
@@ -1585,21 +1728,41 @@ export class AuthController {
   @Post(&#x27;refresh&#x27;)
   @HttpCode(HttpStatus.OK)
   @UseGuards(AuthGuard(&#x27;refresh&#x27;))
-  @UsePipes(new ValidationPipe({ transform: true, whitelist: true }))
   @Throttle({ default: { limit: 20, ttl: 60000 } })
   @ApiBearerAuth()
-  @ApiOperation({ summary: &#x27;Refresh access token&#x27; })
+  @ApiOperation({
+    summary: &#x27;Refresh access token&#x27;,
+    description:
+      &#x27;Uses a valid refresh token to generate new access and refresh tokens.&#x27;,
+  })
+  @ApiBody({
+    description: &#x27;Refresh token data&#x27;,
+    type: RefreshTokenDto,
+  })
   @ApiResponse({
     status: 200,
     description: &#x27;Tokens refreshed successfully&#x27;,
+    type: RefreshTokenResponseDto,
+  })
+  @ApiResponse({
+    status: 400,
+    description: &#x27;Invalid or expired refresh token&#x27;,
+    type: ErrorResponseDto,
   })
   @ApiResponse({
     status: 401,
-    description: &#x27;Invalid refresh token&#x27;,
+    description: &#x27;Unauthorized - invalid JWT signature&#x27;,
+    type: ErrorResponseDto,
+  })
+  @ApiResponse({
+    status: 404,
+    description: &#x27;User or refresh token not found&#x27;,
+    type: ErrorResponseDto,
   })
   @ApiResponse({
     status: 429,
     description: &#x27;Too many refresh attempts&#x27;,
+    type: ErrorResponseDto,
   })
   public async generateNewTokens(@Body() data: RefreshTokenDto) {
     return this.authService.refreshToken(data);
@@ -1608,18 +1771,34 @@ export class AuthController {
   @Post(&#x27;validate-account&#x27;)
   @HttpCode(HttpStatus.OK)
   @Throttle({ default: { limit: 10, ttl: 60000 } })
-  @ApiOperation({ summary: &#x27;Validate account verification&#x27; })
+  @ApiOperation({
+    summary: &#x27;Verify email address&#x27;,
+    description:
+      &quot;Validates the email verification token sent to user&#x27;s email address.&quot;,
+  })
+  @ApiBody({
+    description: &#x27;Email verification data&#x27;,
+    type: AccountVerifyDto,
+  })
   @ApiResponse({
     status: 200,
-    description: &#x27;Account verified successfully&#x27;,
+    description: &#x27;Email verified successfully&#x27;,
+    type: GenericSuccessResponseDto,
   })
   @ApiResponse({
     status: 400,
-    description: &#x27;Invalid verification token&#x27;,
+    description: &#x27;Invalid verification token or token expired&#x27;,
+    type: ErrorResponseDto,
+  })
+  @ApiResponse({
+    status: 404,
+    description: &#x27;User not found or already verified&#x27;,
+    type: ErrorResponseDto,
   })
   @ApiResponse({
     status: 429,
     description: &#x27;Too many verification attempts&#x27;,
+    type: ErrorResponseDto,
   })
   public async validateAccount(@Body() data: AccountVerifyDto) {
     return this.authService.validateAccountVerifyEmail(data);
@@ -1628,19 +1807,36 @@ export class AuthController {
   @Post(&#x27;resend-verify/:email&#x27;)
   @HttpCode(HttpStatus.OK)
   @Throttle({ default: { limit: 3, ttl: 300000 } }) // 3 requests per 5 minutes
-  @ApiOperation({ summary: &#x27;Resend account verification email&#x27; })
-  @ApiParam({ name: &#x27;email&#x27;, description: &#x27;User email address&#x27; })
+  @ApiOperation({
+    summary: &#x27;Resend email verification&#x27;,
+    description:
+      &#x27;Resends the email verification link to the specified email address.&#x27;,
+  })
+  @ApiParam({
+    name: &#x27;email&#x27;,
+    description: &#x27;Email address to resend verification to&#x27;,
+    example: &#x27;john.doe@example.com&#x27;,
+  })
   @ApiResponse({
     status: 200,
-    description: &#x27;Verification email sent&#x27;,
+    description: &#x27;Verification email sent successfully&#x27;,
+    type: GenericSuccessResponseDto,
   })
   @ApiResponse({
     status: 400,
-    description: &#x27;Invalid email address&#x27;,
+    description: &#x27;Invalid email or verification token still valid&#x27;,
+    type: ErrorResponseDto,
+  })
+  @ApiResponse({
+    status: 404,
+    description: &#x27;User not found or already verified&#x27;,
+    type: ErrorResponseDto,
   })
   @ApiResponse({
     status: 429,
-    description: &#x27;Too many resend attempts&#x27;,
+    description:
+      &#x27;Too many resend attempts. Please wait before requesting again.&#x27;,
+    type: ErrorResponseDto,
   })
   public async resendAccountVerify(
     @Param(&#x27;email&#x27;) email: string,
@@ -1652,18 +1848,34 @@ export class AuthController {
   @Post(&#x27;forget-password&#x27;)
   @HttpCode(HttpStatus.OK)
   @Throttle({ default: { limit: 3, ttl: 300000 } }) // 3 requests per 5 minutes
-  @ApiOperation({ summary: &#x27;Request password reset&#x27; })
+  @ApiOperation({
+    summary: &#x27;Request password reset&#x27;,
+    description: &#x27;Sends a password reset email to the specified email address.&#x27;,
+  })
+  @ApiBody({
+    description: &#x27;Email address for password reset&#x27;,
+    type: ForgetPasswordDto,
+  })
   @ApiResponse({
     status: 200,
-    description: &#x27;Password reset email sent&#x27;,
+    description: &#x27;Password reset email sent successfully&#x27;,
+    type: GenericSuccessResponseDto,
   })
   @ApiResponse({
     status: 400,
-    description: &#x27;Invalid email address&#x27;,
+    description: &#x27;Reset email already sent and still valid&#x27;,
+    type: ErrorResponseDto,
+  })
+  @ApiResponse({
+    status: 404,
+    description: &#x27;User not found with this email address&#x27;,
+    type: ErrorResponseDto,
   })
   @ApiResponse({
     status: 429,
-    description: &#x27;Too many password reset attempts&#x27;,
+    description:
+      &#x27;Too many password reset attempts. Please wait before requesting again.&#x27;,
+    type: ErrorResponseDto,
   })
   public async forgetPassword(
     @Body() data: ForgetPasswordDto,
@@ -1675,18 +1887,39 @@ export class AuthController {
   @Post(&#x27;reset-password&#x27;)
   @HttpCode(HttpStatus.OK)
   @Throttle({ default: { limit: 5, ttl: 300000 } }) // 5 requests per 5 minutes
-  @ApiOperation({ summary: &#x27;Reset password with token&#x27; })
+  @ApiOperation({
+    summary: &#x27;Reset password with token&#x27;,
+    description:
+      &#x27;Resets user password using the token received in the password reset email.&#x27;,
+  })
+  @ApiBody({
+    description: &#x27;Password reset data&#x27;,
+    type: ResetPasswordDto,
+  })
   @ApiResponse({
     status: 200,
     description: &#x27;Password reset successfully&#x27;,
+    type: GenericSuccessResponseDto,
   })
   @ApiResponse({
     status: 400,
-    description: &#x27;Invalid reset token or password&#x27;,
+    description: &#x27;Invalid password format&#x27;,
+    type: ErrorResponseDto,
+  })
+  @ApiResponse({
+    status: 401,
+    description: &#x27;Invalid reset token&#x27;,
+    type: ErrorResponseDto,
+  })
+  @ApiResponse({
+    status: 403,
+    description: &#x27;Reset token expired&#x27;,
+    type: ErrorResponseDto,
   })
   @ApiResponse({
     status: 429,
     description: &#x27;Too many reset attempts&#x27;,
+    type: ErrorResponseDto,
   })
   public async resetPassword(@Body() data: ResetPasswordDto) {
     return this.authService.resetPassword(data);
@@ -1697,22 +1930,40 @@ export class AuthController {
   @UseGuards(AuthGuard(&#x27;access&#x27;))
   @Throttle({ default: { limit: 5, ttl: 300000 } }) // 5 requests per 5 minutes
   @ApiBearerAuth()
-  @ApiOperation({ summary: &#x27;Change user password&#x27; })
+  @ApiOperation({
+    summary: &#x27;Change user password&#x27;,
+    description:
+      &#x27;Changes the password for an authenticated user. Requires current password verification.&#x27;,
+  })
+  @ApiBody({
+    description: &#x27;Password change data&#x27;,
+    type: ChangePasswordDto,
+  })
   @ApiResponse({
     status: 200,
     description: &#x27;Password changed successfully&#x27;,
-  })
-  @ApiResponse({
-    status: 401,
-    description: &#x27;Unauthorized - invalid token&#x27;,
+    type: GenericSuccessResponseDto,
   })
   @ApiResponse({
     status: 400,
-    description: &#x27;Invalid current password or new password&#x27;,
+    description:
+      &#x27;Invalid current password, invalid new password format, or user has no password (social login)&#x27;,
+    type: ErrorResponseDto,
+  })
+  @ApiResponse({
+    status: 401,
+    description: &#x27;Unauthorized - invalid or expired access token&#x27;,
+    type: ErrorResponseDto,
+  })
+  @ApiResponse({
+    status: 404,
+    description: &#x27;User not found&#x27;,
+    type: ErrorResponseDto,
   })
   @ApiResponse({
     status: 429,
     description: &#x27;Too many password change attempts&#x27;,
+    type: ErrorResponseDto,
   })
   public async changePassword(@Body() data: ChangePasswordDto) {
     return this.authService.changePassword(data);
@@ -1723,14 +1974,34 @@ export class AuthController {
   @UseGuards(AuthGuard(&#x27;access&#x27;))
   @Throttle({ default: { limit: 10, ttl: 60000 } })
   @ApiBearerAuth()
-  @ApiOperation({ summary: &#x27;User logout&#x27; })
+  @ApiOperation({
+    summary: &#x27;User logout&#x27;,
+    description:
+      &#x27;Logs out the user by invalidating all tokens and clearing session data.&#x27;,
+  })
+  @ApiBody({
+    description: &#x27;Logout data&#x27;,
+    type: LogoutDto,
+  })
   @ApiResponse({
     status: 200,
     description: &#x27;Logout successful&#x27;,
+    type: GenericSuccessResponseDto,
   })
   @ApiResponse({
     status: 401,
-    description: &#x27;Unauthorized - invalid token&#x27;,
+    description: &#x27;Unauthorized - invalid or expired access token&#x27;,
+    type: ErrorResponseDto,
+  })
+  @ApiResponse({
+    status: 404,
+    description: &#x27;User not found&#x27;,
+    type: ErrorResponseDto,
+  })
+  @ApiResponse({
+    status: 429,
+    description: &#x27;Too many logout attempts&#x27;,
+    type: ErrorResponseDto,
   })
   public async logOut(@Body() data: LogoutDto) {
     return this.authService.logOut(data);

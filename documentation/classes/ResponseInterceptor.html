@@ -284,8 +284,8 @@ export class ResponseInterceptor implements NestInterceptor {
           data,
           message,
           meta: {
-            status_code: statusCode,
-            response_time: &#x60;${duration}ms&#x60;,
+            statusCode: statusCode,
+            responseTime: &#x60;${duration}ms&#x60;,
             timestamp: Date.now(),
             path: request.url,
             ...meta,

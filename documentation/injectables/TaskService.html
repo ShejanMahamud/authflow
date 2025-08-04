@@ -79,16 +79,19 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content controller">
+               <div class="content injectable">
                    <div class="content-data">
 
 
 
 
 
+
+
+
 <ol class="breadcrumb">
-  <li class="breadcrumb-item">Controllers</li>
-  <li class="breadcrumb-item" >AppController</li>
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >TaskService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -112,10 +115,8 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app.controller.ts</code>
+            <code>src/task/task.service.ts</code>
         </p>
-
-
 
 
 
@@ -136,7 +137,15 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier"></span>
-                                <a href="#getHello" >getHello</a>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#removeRefreshToken" >removeRefreshToken</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#softDeleteUnVerifiedUser" >softDeleteUnVerifiedUser</a>
                             </li>
                         </ul>
                     </td>
@@ -150,6 +159,67 @@
     </table>
 </section>
 
+            <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(prisma: <a href="../injectables/PrismaService.html" target="_self">PrismaService</a>, logger: Logger)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/task/task.service.ts:6</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>prisma</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/PrismaService.html" target="_self" >PrismaService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>logger</td>
+                                                  
+                                                        <td>
+                                                                    <code>Logger</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
             <section data-compodoc="block-methods">
     
     <h3 id="methods">
@@ -159,18 +229,20 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="getHello"></a>
+                    <a name="removeRefreshToken"></a>
                     <span class="name">
                             <span class="modifier"></span>
-                        <span ><b>getHello</b></span>
-                        <a href="#getHello"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Async</span>
+                        <span ><b>removeRefreshToken</b></span>
+                        <a href="#removeRefreshToken"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getHello(req: Request)</code>
+                    <code>removeRefreshToken()</code>
                 </td>
             </tr>
 
@@ -178,14 +250,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get()<br /></code>
+                    <code>@Cron(CronExpression.EVERY_WEEK, {name: &#x27;expired-token-remove&#x27;, timeZone: &#x27;Asia/Dhaka&#x27;})<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="12"
-                                    class="link-to-prism">src/app.controller.ts:12</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="37"
+                                    class="link-to-prism">src/task/task.service.ts:37</a></div>
                         </td>
                     </tr>
 
@@ -193,76 +265,135 @@
             <tr>
                 <td class="col-md-4">
 
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>req</td>
-                                            <td>
-                                                        <code>Request</code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
                         <div class="io-description">
-                            <b>Returns : </b>    <code>{ success: boolean; message: string; data: { api_docs: string; }; meta: any; }</code>
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                         </div>
-                            <div class="io-description">
-                                
-                            </div>
                 </td>
             </tr>
         </tbody>
     </table>
-</section>    </div>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="softDeleteUnVerifiedUser"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Async</span>
+                        <span ><b>softDeleteUnVerifiedUser</b></span>
+                        <a href="#softDeleteUnVerifiedUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>softDeleteUnVerifiedUser()</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Cron(CronExpression.EVERY_10_SECONDS, {name: &#x27;delete-user&#x27;, timeZone: &#x27;Asia/Dhaka&#x27;})<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="20"
+                                    class="link-to-prism">src/task/task.service.ts:20</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Req } from &#x27;@nestjs/common&#x27;;
-import { ApiExcludeController } from &#x27;@nestjs/swagger&#x27;;
-import { Request } from &#x27;express&#x27;;
-import { getSystemInfoJson } from &#x27;./utils/system-info&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Inject, Injectable, Logger } from &#x27;@nestjs/common&#x27;;
+import { Cron, CronExpression } from &#x27;@nestjs/schedule&#x27;;
+import { PrismaService } from &#x27;src/prisma/prisma.service&#x27;;
 
-@ApiExcludeController()
-@Controller()
-export class AppController {
-  constructor() {}
+@Injectable()
+export class TaskService {
+  constructor(
+    //inject prisma
+    private prisma: PrismaService,
+    //inject custom made logger service
+    @Inject(&#x27;LOGGER&#x27;) private readonly logger: Logger,
+  ) {}
 
-  @Get()
-  getHello(@Req() req: Request) {
-    return {
-      success: true,
-      message: &#x27;Server is operational&#x27;,
-      data: {
-        api_docs: &#x60;${req.protocol}://${req.get(&#x27;host&#x27;)}/v1/api/docs&#x60;,
+  //added cron job which will run every 12 hours
+  @Cron(CronExpression.EVERY_10_SECONDS, {
+    name: &#x27;delete-user&#x27;,
+    timeZone: &#x27;Asia/Dhaka&#x27;,
+  })
+  //soft delete user
+  public async softDeleteUnVerifiedUser() {
+    const result &#x3D; await this.prisma.user.updateMany({
+      where: {
+        emailVerified: false,
+        isDeleted: false,
       },
-      meta: getSystemInfoJson(),
-    };
+      data: {
+        isDeleted: true,
+      },
+    });
+    this.logger.debug(&#x60;${result.count} unverified users deleted from database&#x60;);
+  }
+
+  @Cron(CronExpression.EVERY_WEEK, {
+    name: &#x27;expired-token-remove&#x27;,
+    timeZone: &#x27;Asia/Dhaka&#x27;,
+  })
+  public async removeRefreshToken() {
+    const expiredUsers &#x3D; await this.prisma.user.findMany({
+      where: {
+        refreshToken: {
+          not: null,
+        },
+        refreshTokenExp: {
+          lt: new Date(),
+        },
+      },
+    });
+    await Promise.all([
+      expiredUsers.map(async (user) &#x3D;&gt; {
+        return this.prisma.user.update({
+          where: {
+            id: user.id,
+          },
+          data: {
+            refreshToken: null,
+            refreshTokenExp: null,
+          },
+        });
+      }),
+    ]);
+    this.logger.debug(&#x60;${expiredUsers.length} users refresh token reset&#x60;);
   }
 }
 </code></pre>
     </div>
+
 </div>
-
-
-
 
 
 
@@ -301,8 +432,8 @@ export class AppController {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'controller';
-            var COMPODOC_CURRENT_PAGE_URL = 'AppController.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'TaskService.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

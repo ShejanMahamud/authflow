@@ -386,8 +386,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="486"
-                                    class="link-to-prism">src/auth/auth.service.ts:486</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="527"
+                                    class="link-to-prism">src/auth/auth.service.ts:527</a></div>
                         </td>
                     </tr>
 
@@ -456,8 +456,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="437"
-                                    class="link-to-prism">src/auth/auth.service.ts:437</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="478"
+                                    class="link-to-prism">src/auth/auth.service.ts:478</a></div>
                         </td>
                     </tr>
 
@@ -538,8 +538,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="418"
-                                    class="link-to-prism">src/auth/auth.service.ts:418</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="459"
+                                    class="link-to-prism">src/auth/auth.service.ts:459</a></div>
                         </td>
                     </tr>
 
@@ -608,8 +608,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="387"
-                                    class="link-to-prism">src/auth/auth.service.ts:387</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="407"
+                                    class="link-to-prism">src/auth/auth.service.ts:407</a></div>
                         </td>
                     </tr>
 
@@ -1039,8 +1039,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="587"
-                                    class="link-to-prism">src/auth/auth.service.ts:587</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="628"
+                                    class="link-to-prism">src/auth/auth.service.ts:628</a></div>
                         </td>
                     </tr>
 
@@ -1076,7 +1076,7 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                            <b>Returns : </b>    <code>unknown</code>
 
                         </div>
                             <div class="io-description">
@@ -1354,8 +1354,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="520"
-                                    class="link-to-prism">src/auth/auth.service.ts:520</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="561"
+                                    class="link-to-prism">src/auth/auth.service.ts:561</a></div>
                         </td>
                     </tr>
 
@@ -1518,8 +1518,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="562"
-                                    class="link-to-prism">src/auth/auth.service.ts:562</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="603"
+                                    class="link-to-prism">src/auth/auth.service.ts:603</a></div>
                         </td>
                     </tr>
 
@@ -2134,17 +2134,37 @@ export class AuthService {
       },
     });
 
+    if (user &amp;&amp; user.provider !&#x3D;&#x3D; &#x27;google&#x27;) {
+      return {
+        success: false,
+        message: &#x60;User already registered with ${user.provider}&#x60;,
+      };
+    }
+
+    // Check if the user is already logged in with a valid refresh token
+    if (
+      user?.refreshToken &amp;&amp;
+      user.refreshTokenExp &amp;&amp;
+      user.refreshTokenExp &gt; new Date()
+    ) {
+      return {
+        success: false,
+        message: &#x60;User already logged in via ${user.provider}&#x60;,
+      };
+    }
+
     //if not create a user
     if (!user) {
       user &#x3D; await this.prisma.user.create({
         data: {
           ...data,
           provider: &#x27;google&#x27;,
+          emailVerified: true,
         },
       });
     }
     //set and get tokens
-    const tokens &#x3D; await this.saveTokenInDb(user.id, user.email, &#x27;email&#x27;);
+    const tokens &#x3D; await this.saveTokenInDb(user.id, user.email, &#x27;google&#x27;);
     //return data
     return {
       success: true,
@@ -2165,17 +2185,38 @@ export class AuthService {
       },
     });
 
+    //if user has valid refreshtoken in db
+    if (user &amp;&amp; user.provider !&#x3D;&#x3D; &#x27;github&#x27;) {
+      return {
+        success: false,
+        message: &#x60;User already registered with ${user.provider}&#x60;,
+      };
+    }
+
+    // Check if the user is already logged in with a valid refresh token
+    if (
+      user?.refreshToken &amp;&amp;
+      user.refreshTokenExp &amp;&amp;
+      user.refreshTokenExp &gt; new Date()
+    ) {
+      return {
+        success: false,
+        message: &#x60;User already logged in via ${user.provider}&#x60;,
+      };
+    }
+
     //if not then create a user
     if (!user) {
       user &#x3D; await this.prisma.user.create({
         data: {
           ...data,
           provider: &#x27;github&#x27;,
+          emailVerified: true,
         },
       });
     }
     //set and get tokens
-    const tokens &#x3D; await this.saveTokenInDb(user.id, user.email, &#x27;email&#x27;);
+    const tokens &#x3D; await this.saveTokenInDb(user.id, user.email, &#x27;github&#x27;);
     //send response to client
     return {
       success: true,
@@ -2315,7 +2356,7 @@ export class AuthService {
       throw new UnauthorizedException(&#x27;Reset Token is not valid!&#x27;);
     //check is token expired
     const isExpired &#x3D; this.isExpired(user.resetTokenExp);
-    if (!isExpired) throw new ForbiddenException(&#x27;Reset token is expired&#x27;);
+    if (isExpired) throw new ForbiddenException(&#x27;Reset token is expired&#x27;);
 
     //hash the new password
     const hashed &#x3D; await Util.hash(data.newPassword);
@@ -2373,6 +2414,7 @@ export class AuthService {
       },
       data.id,
     );
+    return { success: true, message: &#x27;User logged out successfully!&#x27; };
   }
 }
 </code></pre>

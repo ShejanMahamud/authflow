@@ -142,10 +142,13 @@
                             <li>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Readonly</span>
                                 <a href="#id" >id</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier">Readonly</span>
@@ -178,6 +181,7 @@
                     <span class="name">
                             <span class="modifier"></span>
                             <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier">Readonly</span>
                         <span ><b>id</b></span>
                         <a href="#id"><span class="icon ion-ios-link"></span></a>
@@ -195,13 +199,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @IsString()<br />@IsNotEmpty()<br />
+                            @ApiProperty({description: &#x27;User ID associated with the refresh token&#x27;, example: &#x27;clm1234567890abcdef&#x27;, format: &#x27;uuid&#x27;})<br />@IsString()<br />@IsNotEmpty({message: &#x27;User ID is required&#x27;})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/auth/dto/refresh-token.dto.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/auth/dto/refresh-token.dto.ts:22</a></div>
                         </td>
                     </tr>
 
@@ -214,6 +218,8 @@
                 <td class="col-md-4">
                     <a name="token"></a>
                     <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier"></span>
                             <span class="modifier"></span>
                             <span class="modifier">Readonly</span>
@@ -233,13 +239,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @IsString()<br />@IsNotEmpty()<br />
+                            @ApiProperty({description: &#x27;JWT refresh token received during login&#x27;, example: &#x27;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&#x27;, format: &#x27;jwt&#x27;})<br />@IsString()<br />@IsNotEmpty({message: &#x27;Refresh token is required&#x27;})<br />@IsJWT({message: &#x27;Invalid JWT token format&#x27;})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/auth/dto/refresh-token.dto.ts:6</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/auth/dto/refresh-token.dto.ts:13</a></div>
                         </td>
                     </tr>
 
@@ -258,15 +264,27 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { IsNotEmpty, IsString } from &#x27;class-validator&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiProperty } from &#x27;@nestjs/swagger&#x27;;
+import { IsNotEmpty, IsString, IsJWT } from &#x27;class-validator&#x27;;
 
 export class RefreshTokenDto {
+  @ApiProperty({
+    description: &#x27;JWT refresh token received during login&#x27;,
+    example: &#x27;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c&#x27;,
+    format: &#x27;jwt&#x27;,
+  })
   @IsString()
-  @IsNotEmpty()
+  @IsNotEmpty({ message: &#x27;Refresh token is required&#x27; })
+  @IsJWT({ message: &#x27;Invalid JWT token format&#x27; })
   readonly token: string;
 
+  @ApiProperty({
+    description: &#x27;User ID associated with the refresh token&#x27;,
+    example: &#x27;clm1234567890abcdef&#x27;,
+    format: &#x27;uuid&#x27;,
+  })
   @IsString()
-  @IsNotEmpty()
+  @IsNotEmpty({ message: &#x27;User ID is required&#x27; })
   readonly id: string;
 }
 </code></pre>

@@ -142,6 +142,10 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#generateSafeUsername" >generateSafeUsername</a>
+                            </li>
+                            <li>
                                 <a href="#validate" >validate</a>
                             </li>
                         </ul>
@@ -210,6 +214,87 @@
     <h3 id="methods">
         Methods
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="generateSafeUsername"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>generateSafeUsername</b></span>
+                        <a href="#generateSafeUsername"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>generateSafeUsername(givenName?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, familyName?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="40"
+                                    class="link-to-prism">src/auth/strategies/google.strategy.ts:40</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>givenName</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>familyName</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -350,13 +435,25 @@ export class GoogleStrategy extends PassportStrategy(Strategy, &#x27;google&#x27
     //formatted user
     const user &#x3D; {
       email: emails?.[0]?.value,
-      username:
-        name?.givenName?.toLowerCase() + &#x27;_&#x27; + name?.familyName?.toLowerCase(),
-      name: name?.givenName + &#x27; &#x27; + name?.familyName,
+      username: this.generateSafeUsername(name?.givenName, name?.familyName),
+      name: (name?.givenName || &#x27;&#x27;) + &#x27; &#x27; + (name?.familyName || &#x27;&#x27;),
       profilePicture: photos?.[0]?.value,
     };
     //forward to callback
     done(null, user);
+  }
+
+  private generateSafeUsername(
+    givenName?: string,
+    familyName?: string,
+  ): string {
+    const firstName &#x3D;
+      givenName?.toLowerCase().replace(/[^a-z0-9]/g, &#x27;&#x27;) || &#x27;user&#x27;;
+    const lastName &#x3D; familyName?.toLowerCase().replace(/[^a-z0-9]/g, &#x27;&#x27;) || &#x27;&#x27;;
+    const timestamp &#x3D; Date.now().toString().slice(-4); // Last 4 digits of timestamp
+    return lastName
+      ? &#x60;${firstName}_${lastName}_${timestamp}&#x60;
+      : &#x60;${firstName}_${timestamp}&#x60;;
   }
 }
 </code></pre>
