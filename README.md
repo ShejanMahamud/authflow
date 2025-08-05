@@ -55,9 +55,9 @@ A production-ready, plug-and-play authentication & authorization API built with 
 | **Backend**  | NestJS                           |
 | **Database** | PostgreSQL + Prisma ORM          |
 | **Auth**     | PassportJS (JWT, Google, GitHub) |
-| **Queue**    | BullMQ + Redis                   |
+| **Queue**    | BullMQ                   |
 | **Storage**  | AWS S3, AWS CloudFront           |
-| **Cron**     | node-cron                        |
+| **Cron**     | nest-scheduler                        |
 | **Docs**     | Swagger                          |
 
 ---
@@ -90,10 +90,10 @@ A production-ready, plug-and-play authentication & authorization API built with 
    Copy `.env.example` to `.env` and update values:
 
    ```env
-   DATABASE_URL=postgresql://admin:consolelogadmin@localhost:5433/consolelog_db
+   DATABASE_URL=postgresql://test_admin:test_pass@localhost:5433/test_db
    REDIS_HOST=localhost
    REDIS_PORT=6379
-   REDIS_PASSWORD=consolelogredis
+   REDIS_PASSWORD=redis_password
    JWT_SECRET=your_jwt_secret
 
    # OAuth Credentials
@@ -105,6 +105,7 @@ A production-ready, plug-and-play authentication & authorization API built with 
    # AWS
    AWS_ACCESS_KEY_ID=your_key
    AWS_SECRET_ACCESS_KEY=your_secret
+   AWS_PUBLIC_BUCKET=bucket_name
    S3_BUCKET_NAME=your_bucket
    CLOUDFRONT_DOMAIN=your_distribution.cloudfront.net
    ```
@@ -130,7 +131,7 @@ A production-ready, plug-and-play authentication & authorization API built with 
 
 7. **Access Swagger UI**
 
-   Visit `http://localhost:3000/api` in your browser.
+   Visit `http://localhost:3000/v1/api/docs` in your browser.
 
 ---
 
@@ -156,7 +157,7 @@ A production-ready, plug-and-play authentication & authorization API built with 
 4. **Clone and Configure**
 
    ```bash
-   git clone https://github.com/your-org/authflow.git
+   git clone https://github.com/ShejanMahamud/authflow.git
    cd authflow
    ```
 
@@ -170,28 +171,32 @@ A production-ready, plug-and-play authentication & authorization API built with 
    services:
      postgres:
        image: postgres:latest
-       container_name: authflow_db
+       container_name: test_postgres
        ports:
-         - '5433:5432'
+         - '${POSTGRES_PORT}:5432'
        environment:
-         POSTGRES_USER: admin
-         POSTGRES_PASSWORD: consolelogadmin
-         POSTGRES_DB: consolelog_db
+         POSTGRES_USER: ${POSTGRES_USER}
+         POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+         POSTGRES_DB: ${POSTGRES_DB}
        volumes:
          - pgdata:/var/lib/postgresql/data
        restart: unless-stopped
+       env_file:
+         - .env
 
      redis:
-       image: redis:alpine
-       container_name: authflow_redis
+       image: redis/redis-stack:latest
+       container_name: test_redis
        ports:
-         - '6379:6379'
-       command: ['redis-server', '--requirepass', 'consolelogredis']
+         - '${REDIS_PORT}:6379'
+       command: redis-server --requirepass ${REDIS_PASSWORD}
        environment:
-         REDIS_PASSWORD: consolelogredis
+         REDIS_PASSWORD: ${POSTGRES_PASSWORD}
        volumes:
          - redisdata:/data
        restart: unless-stopped
+       env_file:
+         - .env
 
    volumes:
      pgdata:
@@ -228,6 +233,7 @@ A production-ready, plug-and-play authentication & authorization API built with 
 | POST   | `/auth/refresh-token`   | Refresh access token    |
 | POST   | `/auth/forgot-password` | Initiate password reset |
 | POST   | `/auth/reset-password`  | Complete password reset |
+| POST   | `/auth/logout`          | Logout |
 
 For complete details, see Swagger UI.
 
@@ -237,12 +243,5 @@ For complete details, see Swagger UI.
 
 - TOTP-based 2FA
 - Session/device management dashboard
-- Webhook/event subscription system
-- MJML-powered email templates
-- Publish as NPM & Docker image
 
 ---
-
-## 📄 License
-
-This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
