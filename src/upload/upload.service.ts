@@ -2,9 +2,11 @@ import { InjectQueue } from '@nestjs/bullmq';
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Queue } from 'bullmq';
+import { FileTypeResult } from 'file-type';
+import * as fs from 'fs';
+import * as os from 'os';
 import * as path from 'path';
 import { Util } from 'src/utils/util';
-
 @Injectable()
 export class UploadService {
   private readonly bucketName: string;
@@ -25,6 +27,13 @@ export class UploadService {
 
   //file uploader queue method
   private async enqueueUpload(file: Express.Multer.File): Promise<string> {
+    const { fileTypeFromBuffer } = await import('file-type');
+    const fileType: FileTypeResult | undefined = await fileTypeFromBuffer(
+      file.buffer,
+    );
+    if (!fileType || !fileType.mime.startsWith('image/')) {
+      throw new BadRequestException('Invalid or unsupported file type!');
+    }
     //check mime type
     if (
       !['image/gif', 'image/jpg', 'image/jpeg', 'image/png'].includes(
@@ -33,10 +42,18 @@ export class UploadService {
     ) {
       throw new BadRequestException('Mime type not supported');
     }
+    //create tmp dir
+    const tmpDir = os.tmpdir();
+    const tmpFilePath = path.join(
+      tmpDir,
+      this.generateFileName(file.originalname),
+    );
+    //stream the file
+    fs.writeFileSync(tmpFilePath, file.buffer);
     //generate key
     const key = this.generateFileName(file.originalname);
     await this.uploadQueue.add('upload-image', {
-      buffer: file.buffer.toString('base64'),
+      filePath: tmpFilePath,
       mimeType: file.mimetype,
       bucketName: this.bucketName,
       key,

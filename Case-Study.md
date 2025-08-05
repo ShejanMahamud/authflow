@@ -53,6 +53,9 @@ The primary goal of **AuthFlow** is to eliminate the repetitive effort of buildi
 3. **Session Management with Expired Tokens**
    Users could retain expired refresh tokens which posed security risks.
 
+4. **Queue Processing Limitations**
+   File buffer conversion to base64 increases memory usage by ~33%
+
 ---
 
 ## 🧠 How I Overcame Them
@@ -62,6 +65,8 @@ The primary goal of **AuthFlow** is to eliminate the repetitive effort of buildi
 2. Studied AWS documentation and followed detailed YouTube tutorials to configure IAM roles, CORS, S3 bucket policies, and CloudFront distributions correctly.
 
 3. Implemented a **scheduled cron job** that runs every hour to remove users with expired refresh tokens, maintaining a clean and secure session system.
+
+4. used tmp file for stream the file and then clear the stream for memory cleanup
 
 ---
 

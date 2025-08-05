@@ -8,6 +8,7 @@ import { GithubStrategy } from './strategies/github.strategy';
 import { GoogleStrategy } from './strategies/google.strategy';
 import { JwtAccessStrategy } from './strategies/jwt-access.strategy';
 import { JwtRefreshStrategy } from './strategies/jwt-refresh.strategy';
+import { UserService } from './user.service';
 
 /**
  * Authentication Module
@@ -19,6 +20,7 @@ import { JwtRefreshStrategy } from './strategies/jwt-refresh.strategy';
  * - JWT access and refresh token management
  * - Email verification
  * - Password reset functionality
+ * - User management endpoints
  * - Rate limiting and security features
  *
  * All endpoints are fully documented with Swagger/OpenAPI specifications
@@ -28,6 +30,7 @@ import { JwtRefreshStrategy } from './strategies/jwt-refresh.strategy';
   imports: [UploadModule, JwtModule.register({}), MailModule],
   providers: [
     AuthService,
+    UserService,
     JwtAccessStrategy,
     JwtRefreshStrategy,
     GoogleStrategy,

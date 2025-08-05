@@ -8,6 +8,7 @@ import {
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { Request } from 'express';
+import { CustomLoggerService } from 'src/common/logger.service';
 import { MailService } from 'src/mail/mail.service';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { UploadService } from 'src/upload/upload.service';
@@ -47,6 +48,9 @@ export class AuthService {
 
     //inject mail service
     private readonly mail: MailService,
+
+    //inject logger service
+    private readonly logger: CustomLoggerService,
   ) {
     //access token secret
     this.accessTokenSecret = config.get<string>(
@@ -237,10 +241,6 @@ export class AuthService {
     if (!isMatched || isExpired) {
       throw new BadRequestException('Tokens are not matched or expired');
     }
-    //verify with jwt the token
-    await this.jwt.verify(data.token, {
-      secret: this.refreshTokenSecret,
-    });
     //revoke new token and save in db
     const tokens = await this.saveTokenInDb(user.id, user.email);
     return {
@@ -641,6 +641,7 @@ export class AuthService {
     };
   }
 
+  //logout service
   public async logOut(data: LogoutDto) {
     const user = await this.isUserExists({ id: data.id });
     if (!user) {

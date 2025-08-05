@@ -3,6 +3,7 @@ import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import helmet from 'helmet';
 import { AppModule } from './app.module';
+import { LoggingInterceptor } from './common/logging.interceptor';
 import { ResponseException } from './common/response.exception';
 import { ResponseInterceptor } from './common/response.interceptor';
 
@@ -16,12 +17,35 @@ async function bootstrap() {
       forbidNonWhitelisted: true,
     }),
   );
+  //cors config
   app.enableCors({
-    origin: [process.env.CLIENT_URL],
+    origin:
+      process.env.NODE_ENV === 'production'
+        ? process.env.CLIENT_URL?.split(',')
+        : ['http://localhost:3000'],
     credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
   });
+  //helmet
   app.use(helmet());
-  app.useGlobalInterceptors(new ResponseInterceptor());
+  //must required env vars
+  const requiredEnvVars = [
+    'ACCESS_TOKEN_SECRET',
+    'REFRESH_TOKEN_SECRET',
+    'DATABASE_URL',
+    'CLIENT_URL',
+  ];
+  //if not found throw error
+  requiredEnvVars.forEach((envVar) => {
+    if (!process.env[envVar]) {
+      throw new Error(`Missing required environment variable: ${envVar}`);
+    }
+  });
+  // Add logging interceptor first, then response interceptor
+  const loggingInterceptor = app.get(LoggingInterceptor);
+  app.useGlobalInterceptors(loggingInterceptor, new ResponseInterceptor());
+
   app.useGlobalFilters(new ResponseException());
   const config = new DocumentBuilder()
     .setTitle('AuthFlow')

@@ -4,18 +4,20 @@ import { APP_GUARD } from '@nestjs/core';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { AppController } from './app.controller';
 import { AuthModule } from './auth/auth.module';
+import { LoggerModule } from './common/logger.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { QueueModule } from './queue/queue.module';
 import { TaskModule } from './task/task.module';
 
 @Module({
   imports: [
+    LoggerModule,
     TaskModule,
     ThrottlerModule.forRoot({
       throttlers: [
         {
           ttl: 60,
-          limit: 100,
+          limit: 10,
         },
       ],
     }),

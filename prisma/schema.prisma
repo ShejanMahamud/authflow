@@ -25,44 +25,21 @@ model User {
   resetTokenExp   DateTime?
   isDeleted       Boolean       @default(false)
   emailVerified   Boolean       @default(false)
-  maxSessions     Int           @default(5)
   createdAt       DateTime      @default(now())
   updatedAt       DateTime      @updatedAt
-  sessions        UserSession[]
+
+  @@index([username])
+  @@index([email])
+  @@index([verifyToken])
+  @@index([refreshToken])
+  @@index([resetToken])
 
   @@map("users")
-}
-
-model UserSession {
-  id           String   @id @default(uuid())
-  userId       String
-  deviceId     String
-  deviceName   String?
-  deviceType   String?
-  ipAddress    String
-  userAgent    String
-  location     String?
-  refreshToken String   @unique
-  accessToken  String?
-  isActive     Boolean  @default(false)
-  lastActivity DateTime @default(now())
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-
-  //relations
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@index([userId])
-  @@index([refreshToken])
-  @@index([isActive])
-  @@index([deviceId])
-  @@map("user_sessions")
 }
 
 enum UserRole {
   user
   admin
-  moderator
 }
 
 enum Provider {

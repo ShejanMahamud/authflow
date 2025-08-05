@@ -2,7 +2,7 @@ import { PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
 import { Processor, WorkerHost } from '@nestjs/bullmq';
 import { Inject, RequestTimeoutException } from '@nestjs/common';
 import { Job } from 'bullmq';
-
+import * as fs from 'fs';
 @Processor('uploader')
 export class UploadProcessor extends WorkerHost {
   constructor(
@@ -14,22 +14,24 @@ export class UploadProcessor extends WorkerHost {
 
   async process(
     job: Job<{
-      buffer: string;
+      filePath: string;
       mimeType: string;
       bucketName: string;
       key: string;
     }>,
   ): Promise<string> {
     const { data } = job;
+    const fileStream = fs.createReadStream(data.filePath);
     //upload to s3
     try {
       const command = new PutObjectCommand({
         Bucket: data.bucketName,
         Key: data.key,
-        Body: Buffer.from(data.buffer, 'base64'),
+        Body: fileStream,
         ContentType: data.mimeType,
       });
       await this.s3.send(command);
+      fs.unlinkSync(job.data.filePath);
       return data.key;
     } catch (error) {
       throw new RequestTimeoutException(error);

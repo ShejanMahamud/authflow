@@ -68,6 +68,9 @@ importers:
       compression:
         specifier: ^1.8.1
         version: 1.8.1
+      file-type:
+        specifier: ^21.0.0
+        version: 21.0.0
       handlebars:
         specifier: ^4.7.8
         version: 4.7.8

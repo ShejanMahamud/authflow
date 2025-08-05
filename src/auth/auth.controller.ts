@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   FileTypeValidator,
   Get,
   HttpCode,
@@ -8,7 +9,9 @@ import {
   MaxFileSizeValidator,
   Param,
   ParseFilePipe,
+  ParseIntPipe,
   Post,
+  Query,
   Req,
   UploadedFile,
   UseGuards,
@@ -23,6 +26,7 @@ import {
   ApiConsumes,
   ApiOperation,
   ApiParam,
+  ApiQuery,
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
@@ -47,11 +51,20 @@ import { LogoutDto } from './dto/logout.dto';
 import { RefreshTokenDto } from './dto/refresh-token.dto';
 import { RegisterResponseDto } from './dto/register-response.dto';
 import { ResetPasswordDto } from './dto/reset-password.dto';
+import {
+  UserDeleteResponseDto,
+  UserResponseDto,
+  UsersListResponseDto,
+} from './dto/user-response.dto';
+import { UserService } from './user.service';
 
 @ApiTags('Authentication')
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(
+    private readonly authService: AuthService,
+    private readonly userService: UserService,
+  ) {}
 
   @Post('register')
   @HttpCode(HttpStatus.CREATED)
@@ -540,5 +553,153 @@ export class AuthController {
   })
   public async logOut(@Body() data: LogoutDto) {
     return this.authService.logOut(data);
+  }
+
+  // User Management Endpoints
+
+  @Get('users')
+  @HttpCode(HttpStatus.OK)
+  @UseGuards(AuthGuard('access'))
+  @Throttle({ default: { limit: 30, ttl: 60000 } }) // 30 requests per minute
+  @ApiBearerAuth()
+  @ApiOperation({
+    summary: 'Get all users with pagination',
+    description:
+      'Retrieves a paginated list of all users in the system. Supports cursor-based pagination for efficient browsing through large datasets.',
+  })
+  @ApiQuery({
+    name: 'limit',
+    description: 'Maximum number of users to return (1-100)',
+    required: false,
+    type: Number,
+    example: 10,
+  })
+  @ApiQuery({
+    name: 'cursor',
+    description: 'Cursor for pagination (user ID to start from)',
+    required: false,
+    type: String,
+    example: 'clm1234567890abcdef',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Users retrieved successfully',
+    type: UsersListResponseDto,
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Invalid query parameters',
+    type: ErrorResponseDto,
+  })
+  @ApiResponse({
+    status: 401,
+    description: 'Unauthorized - invalid or expired access token',
+    type: ErrorResponseDto,
+  })
+  @ApiResponse({
+    status: 429,
+    description: 'Too many requests',
+    type: ErrorResponseDto,
+  })
+  public async getAllUsers(
+    @Query('limit', ParseIntPipe) limit: number,
+    @Query('cursor') cursor: string,
+  ) {
+    return this.userService.allUsers(limit, cursor);
+  }
+
+  @Get('users/:id')
+  @HttpCode(HttpStatus.OK)
+  @UseGuards(AuthGuard('access'))
+  @Throttle({ default: { limit: 50, ttl: 60000 } }) // 50 requests per minute
+  @ApiBearerAuth()
+  @ApiOperation({
+    summary: 'Get a specific user by ID',
+    description:
+      'Retrieves detailed information about a specific user using their unique identifier.',
+  })
+  @ApiParam({
+    name: 'id',
+    description: 'Unique identifier of the user',
+    example: 'clm1234567890abcdef',
+    type: String,
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'User retrieved successfully',
+    type: UserResponseDto,
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Invalid user ID format',
+    type: ErrorResponseDto,
+  })
+  @ApiResponse({
+    status: 401,
+    description: 'Unauthorized - invalid or expired access token',
+    type: ErrorResponseDto,
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'User not found',
+    type: ErrorResponseDto,
+  })
+  @ApiResponse({
+    status: 429,
+    description: 'Too many requests',
+    type: ErrorResponseDto,
+  })
+  public async getUser(@Param('id') id: string) {
+    return this.userService.getAUser(id);
+  }
+
+  @Delete('users/:id')
+  @HttpCode(HttpStatus.OK)
+  @UseGuards(AuthGuard('access'))
+  @Throttle({ default: { limit: 10, ttl: 300000 } }) // 10 requests per 5 minutes
+  @ApiBearerAuth()
+  @ApiOperation({
+    summary: 'Delete a specific user',
+    description:
+      'Permanently deletes a user account and all associated data. This action cannot be undone.',
+  })
+  @ApiParam({
+    name: 'id',
+    description: 'Unique identifier of the user to delete',
+    example: 'clm1234567890abcdef',
+    type: String,
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'User deleted successfully',
+    type: UserDeleteResponseDto,
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Invalid user ID format',
+    type: ErrorResponseDto,
+  })
+  @ApiResponse({
+    status: 401,
+    description: 'Unauthorized - invalid or expired access token',
+    type: ErrorResponseDto,
+  })
+  @ApiResponse({
+    status: 403,
+    description: 'Forbidden - insufficient permissions to delete user',
+    type: ErrorResponseDto,
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'User not found',
+    type: ErrorResponseDto,
+  })
+  @ApiResponse({
+    status: 429,
+    description: 'Too many deletion attempts',
+    type: ErrorResponseDto,
+  })
+  public async deleteUser(@Param('id') id: string) {
+    return this.userService.deleteUser(id);
   }
 }

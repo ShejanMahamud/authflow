@@ -5,9 +5,7 @@ import {
   IsString,
   Matches,
   MinLength,
-  ValidateIf,
 } from 'class-validator';
-import { Provider } from 'generated/prisma';
 
 export class RegisterUserDto {
   @ApiProperty({
@@ -20,7 +18,7 @@ export class RegisterUserDto {
   @IsString()
   @IsNotEmpty({ message: 'Username is required' })
   @MinLength(3, { message: 'Username must be at least 3 characters long' })
-  @Matches(/[A-Za-z\d@$!%*?&]+/, {
+  @Matches(/^[a-zA-Z0-9_]+$/, {
     message: 'Username can only contain letters, numbers, and underscores',
   })
   readonly username: string;
@@ -54,7 +52,6 @@ export class RegisterUserDto {
     format: 'password',
     required: false,
   })
-  @ValidateIf((o: RegisterUserDto) => o.provider === 'email')
   @IsString()
   @IsNotEmpty({ message: 'Password is required for email registration' })
   @MinLength(8, { message: 'Password must be at least 8 characters long' })
@@ -63,12 +60,4 @@ export class RegisterUserDto {
       'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character',
   })
   readonly password: string;
-
-  @ApiProperty({
-    description: 'Authentication provider type',
-    enum: Provider,
-    example: Provider.email,
-    default: Provider.email,
-  })
-  provider: Provider;
 }
